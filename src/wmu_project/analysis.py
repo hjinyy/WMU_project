@@ -3,9 +3,18 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from itertools import combinations
+import os
 from pathlib import Path
 from typing import Iterable
 
+import matplotlib
+# Force an interactive backend on Windows/PyCharm so plt.show() opens a real
+# plot window instead of silently using a non-interactive backend.
+if os.name == "nt":
+    try:
+        matplotlib.use("TkAgg")
+    except Exception:
+        pass
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
