@@ -12,6 +12,8 @@ import numpy as np
 import pandas as pd
 
 DEFAULT_WMU_BUSES = [3, 5, 8, 10, 11, 12, 23, 26, 28, 29]
+# Default workbook used when the user simply presses "Run" in PyCharm
+# without passing any command-line arguments.
 DEFAULT_WINDOWS_INPUT = Path(r"C:\Users\user\Documents\MATLAB\WMU_test\WMU_fault_results_sag.xlsx")
 
 
@@ -260,8 +262,11 @@ def save_excel(result: AnalysisResult, output_path: str | Path) -> None:
 def finalize_figure(fig: plt.Figure, output_path: str | Path, show: bool = True) -> Path:
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    # Every figure is always saved to disk first so the run is reproducible.
     fig.savefig(output_path, dpi=180)
     if show:
+        # This is the line that makes the plot appear as a popup/tool window
+        # when the script is run from PyCharm or another interactive session.
         plt.show()
     plt.close(fig)
     return output_path
@@ -395,6 +400,8 @@ def save_figure6(result: AnalysisResult, output_dir: str | Path, show: bool = Tr
 
 def build_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
+    # If these are omitted, resolve_default_paths() falls back to the default
+    # workbook path and to the repository-local outputs/ folder.
     parser.add_argument("--input")
     parser.add_argument("--output-dir")
     parser.add_argument("--thr-dv", type=float, default=0.072)
@@ -410,6 +417,10 @@ def resolve_default_paths(input_arg: str | None, output_arg: str | None, script_
     if input_arg:
         input_path = Path(input_arg)
     else:
+        # PyCharm-friendly fallback search order:
+        # 1. Fixed workbook path in the MATLAB working folder
+        # 2. Workbook placed in repository root
+        # 3. Workbook placed in repository data/ folder
         candidates = [
             DEFAULT_WINDOWS_INPUT,
             repo_root / "WMU_fault_results_sag.xlsx",
@@ -432,6 +443,8 @@ def resolve_default_paths(input_arg: str | None, output_arg: str | None, script_
     if output_arg:
         output_dir = Path(output_arg)
     else:
+        # Default figure/output location when the script is launched directly
+        # from PyCharm without any arguments.
         output_dir = repo_root / "outputs"
 
     output_dir.mkdir(parents=True, exist_ok=True)
