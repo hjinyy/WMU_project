@@ -458,3 +458,16 @@ def resolve_default_paths(input_arg: str | None, output_arg: str | None, script_
 
     output_dir.mkdir(parents=True, exist_ok=True)
     return input_path, output_dir
+
+
+if __name__ == "__main__":
+    # Make the module less confusing when a user presses "Run" on analysis.py
+    # inside PyCharm. In that case we generate Figure 1 with default paths and
+    # print explicit diagnostics instead of silently exiting.
+    input_path, output_dir = resolve_default_paths(None, None, __file__)
+    print(f"[analysis.py] matplotlib backend = {matplotlib.get_backend()}")
+    print(f"[analysis.py] input workbook    = {input_path}")
+    print(f"[analysis.py] output directory  = {output_dir}")
+    result = analyze_fault_workbook(input_path)
+    out = save_figure1(result, output_dir, show=True)
+    print(f"[analysis.py] Saved figure to: {out}")
