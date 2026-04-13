@@ -257,11 +257,21 @@ def save_excel(result: AnalysisResult, output_path: str | Path) -> None:
         result.minimal_k.to_excel(writer, sheet_name="MinimalK", index=False)
 
 
-def save_figure1(result: AnalysisResult, output_dir: str | Path) -> Path:
+def finalize_figure(fig: plt.Figure, output_path: str | Path, show: bool = True) -> Path:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=180)
+    if show:
+        plt.show()
+    plt.close(fig)
+    return output_path
+
+
+def save_figure1(result: AnalysisResult, output_dir: str | Path, show: bool = True) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out = output_dir / "figure1_coverage_vs_num_wmu.png"
-    plt.figure(figsize=(7, 4.5))
+    fig = plt.figure(figsize=(7, 4.5))
     plt.plot(result.coverage_curve["NumWMU"], result.coverage_curve["Coverage"] * 100, marker="o", linewidth=2)
     plt.ylim(0, 105)
     plt.xlabel("# WMU")
@@ -269,48 +279,44 @@ def save_figure1(result: AnalysisResult, output_dir: str | Path) -> Path:
     plt.title(f"Coverage vs #WMU (thr_dv={result.threshold:.3f})")
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(out, dpi=180)
-    plt.close()
-    return out
+    return finalize_figure(fig, out, show=show)
 
 
-def save_figure2(result: AnalysisResult, output_dir: str | Path) -> tuple[Path, Path]:
+def save_figure2(result: AnalysisResult, output_dir: str | Path, show: bool = True) -> tuple[Path, Path]:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out1 = output_dir / "figure2_wmu_mean_dv_bar.png"
     out2 = output_dir / "figure2b_star_wmu_count.png"
 
     risk = result.wmu_risk.copy()
-    plt.figure(figsize=(8, 4.5))
+    fig1 = plt.figure(figsize=(8, 4.5))
     plt.bar(risk["WMU"].astype(str), risk["MeanDV_Energy"])
     plt.xlabel("WMU Bus")
     plt.ylabel("Mean DV Energy")
     plt.title("WMU Ranking by Mean DV Energy")
     plt.grid(True, axis="y", alpha=0.3)
     plt.tight_layout()
-    plt.savefig(out1, dpi=180)
-    plt.close()
+    finalize_figure(fig1, out1, show=show)
 
     star = risk.sort_values("StarCount", ascending=False)
-    plt.figure(figsize=(8, 4.5))
+    fig2 = plt.figure(figsize=(8, 4.5))
     plt.bar(star["WMU"].astype(str), star["StarCount"])
     plt.xlabel("WMU Bus")
     plt.ylabel("Star Count")
     plt.title("StarWMU Count")
     plt.grid(True, axis="y", alpha=0.3)
     plt.tight_layout()
-    plt.savefig(out2, dpi=180)
-    plt.close()
+    finalize_figure(fig2, out2, show=show)
     return out1, out2
 
 
-def save_figure3(result: AnalysisResult, output_dir: str | Path) -> Path:
+def save_figure3(result: AnalysisResult, output_dir: str | Path, show: bool = True) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out = output_dir / "figure3_case_wmu_heatmap_sorted.png"
     dv = result.dv_matrix.copy().sort_values(["StarWMU", "CaseID"])
     arr = dv[[f"WMU_{b}" for b in result.wmu_buses]].to_numpy()
-    plt.figure(figsize=(8, 7))
+    fig = plt.figure(figsize=(8, 7))
     plt.imshow(arr, aspect="auto", cmap="viridis")
     plt.colorbar(label="DV Energy")
     plt.xticks(range(len(result.wmu_buses)), [str(b) for b in result.wmu_buses])
@@ -319,12 +325,10 @@ def save_figure3(result: AnalysisResult, output_dir: str | Path) -> Path:
     plt.ylabel("Fault Case (sorted by StarWMU)")
     plt.title("Case x WMU DV Energy Heatmap")
     plt.tight_layout()
-    plt.savefig(out, dpi=180)
-    plt.close()
-    return out
+    return finalize_figure(fig, out, show=show)
 
 
-def save_figure4(result: AnalysisResult, output_dir: str | Path, edge_csv: str | Path) -> Path:
+def save_figure4(result: AnalysisResult, output_dir: str | Path, edge_csv: str | Path, show: bool = True) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out = output_dir / "figure4_network_graph.png"
@@ -338,7 +342,7 @@ def save_figure4(result: AnalysisResult, output_dir: str | Path, edge_csv: str |
     star_count = result.case_summary["StarWMU"].value_counts().to_dict()
     sizes = [450 if n in result.wmu_buses else 180 for n in g.nodes()]
     colors = [star_count.get(n, 0) if n in result.wmu_buses else 0 for n in g.nodes()]
-    plt.figure(figsize=(10, 7))
+    fig = plt.figure(figsize=(10, 7))
     nx.draw_networkx_edges(g, pos, alpha=0.35, width=1.2)
     nodes = nx.draw_networkx_nodes(g, pos, node_size=sizes, node_color=colors, cmap="plasma")
     nx.draw_networkx_labels(g, pos, font_size=8)
@@ -346,29 +350,25 @@ def save_figure4(result: AnalysisResult, output_dir: str | Path, edge_csv: str |
     plt.title("IEEE 30-Bus Graph with WMU Nodes")
     plt.axis("off")
     plt.tight_layout()
-    plt.savefig(out, dpi=180)
-    plt.close()
-    return out
+    return finalize_figure(fig, out, show=show)
 
 
-def save_figure5(result: AnalysisResult, output_dir: str | Path) -> Path:
+def save_figure5(result: AnalysisResult, output_dir: str | Path, show: bool = True) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out = output_dir / "figure5_wmu_boxplot.png"
     data = [result.dv_matrix[f"WMU_{b}"].to_numpy() for b in result.wmu_buses]
-    plt.figure(figsize=(8, 4.5))
+    fig = plt.figure(figsize=(8, 4.5))
     plt.boxplot(data, labels=[str(b) for b in result.wmu_buses])
     plt.xlabel("WMU Bus")
     plt.ylabel("DV Energy")
     plt.title("WMU DV Distribution by Case")
     plt.grid(True, axis="y", alpha=0.3)
     plt.tight_layout()
-    plt.savefig(out, dpi=180)
-    plt.close()
-    return out
+    return finalize_figure(fig, out, show=show)
 
 
-def save_figure6(result: AnalysisResult, output_dir: str | Path) -> Path:
+def save_figure6(result: AnalysisResult, output_dir: str | Path, show: bool = True) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out = output_dir / "figure6_3dscatter_dv_sag_resratio.png"
@@ -390,9 +390,7 @@ def save_figure6(result: AnalysisResult, output_dir: str | Path) -> Path:
     ax.set_title("3D Scatter of Fault Cases Colored by StarWMU")
     fig.colorbar(sc, ax=ax, label="StarWMU")
     plt.tight_layout()
-    plt.savefig(out, dpi=180)
-    plt.close()
-    return out
+    return finalize_figure(fig, out, show=show)
 
 
 def build_argument_parser() -> argparse.ArgumentParser:

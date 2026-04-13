@@ -8,7 +8,8 @@ def main() -> None:
     args = parser.parse_args()
     input_path, output_dir = resolve_default_paths(args.input, args.output_dir, __file__)
     result = analyze_fault_workbook(input_path, thr_dv=args.thr_dv, t_event=args.t_event, f0=args.f0)
-    save_figure2(result, output_dir)
+    out1, out2 = save_figure2(result, output_dir, show=True)
+    print(f"Saved figures to: {out1}, {out2}")
 
 
 if __name__ == "__main__":
