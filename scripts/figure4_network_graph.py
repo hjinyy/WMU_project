@@ -9,7 +9,8 @@ def main() -> None:
     args = parser.parse_args()
     input_path, output_dir = resolve_default_paths(args.input, args.output_dir, __file__)
     result = analyze_fault_workbook(input_path, thr_dv=args.thr_dv, t_event=args.t_event, f0=args.f0)
-    save_figure4(result, output_dir, args.edge_csv)
+    out = save_figure4(result, output_dir, args.edge_csv, show=True)
+    print(f"Saved figure to: {out}")
 
 
 if __name__ == "__main__":
