@@ -7,8 +7,10 @@ def main() -> None:
     parser = build_argument_parser()
     parser.add_argument("--edge-csv", default=str(Path(__file__).resolve().parents[1] / "data" / "ieee30_edges.csv"))
     args = parser.parse_args()
+    # Uses the same default input/output resolution if no CLI arguments are provided.
     input_path, output_dir = resolve_default_paths(args.input, args.output_dir, __file__)
     result = analyze_fault_workbook(input_path, thr_dv=args.thr_dv, t_event=args.t_event, f0=args.f0)
+    # The network graph is saved and then shown.
     out = save_figure4(result, output_dir, args.edge_csv, show=True)
     print(f"Saved figure to: {out}")
 

@@ -6,8 +6,10 @@ from wmu_project.analysis import analyze_fault_workbook, build_argument_parser, 
 def main() -> None:
     parser = build_argument_parser()
     args = parser.parse_args()
+    # Same default-path behavior as Figure 1.
     input_path, output_dir = resolve_default_paths(args.input, args.output_dir, __file__)
     result = analyze_fault_workbook(input_path, thr_dv=args.thr_dv, t_event=args.t_event, f0=args.f0)
+    # Both bar charts are saved and then shown.
     out1, out2 = save_figure2(result, output_dir, show=True)
     print(f"Saved figures to: {out1}, {out2}")
 
