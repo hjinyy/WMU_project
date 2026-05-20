@@ -15,7 +15,7 @@ FAULT_EVENTS = {"SLG_Fault", "ThreePhase_Fault"}
 LOAD_SWITCH_ALIASES = {"LoadSwitch", "LoadSwitch15pct"}
 FILENAME_RE = re.compile(
     r"^(?P<event>Normal|LoadSwitch(?:15pct)?|SLG_Fault|ThreePhase_Fault)"
-    r"(?:_(?:Bus(?P<bus>\d+)|Case(?P<case>\d+)))?\.xlsx$",
+    r"(?:_(?:Bus(?P<bus>\d+)|Case(?P<case>\d+)))?\.(?P<ext>xlsx|csv)$",
     re.IGNORECASE,
 )
 BUS_COLUMN_RE = re.compile(r"^(?P<signal>[VI][abc])_(?P<bus>\d+)$")
@@ -90,8 +90,19 @@ def parse_case_filename(path: str | Path) -> CaseMetadata:
 
 def list_waveform_case_files(input_dir: str | Path) -> list[CaseMetadata]:
     root = to_local_path(input_dir)
-    files = sorted(root.glob("*.xlsx"))
-    cases = [parse_case_filename(path) for path in files]
+    files = sorted(
+        [
+            path
+            for path in root.iterdir()
+            if path.is_file() and path.suffix.lower() in {".xlsx", ".csv"}
+        ]
+    )
+    cases = []
+    for path in files:
+        try:
+            cases.append(parse_case_filename(path))
+        except WaveformDataError:
+            continue
     return cases
 
 

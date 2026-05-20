@@ -11,13 +11,13 @@ from wmu_project.waveform_utils import to_local_path
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run waveform sensor selection analysis")
-    parser.add_argument("--feature-table", required=True)
+    parser.add_argument("--feature-table", required=True, help="Path to feature_table_by_bus.csv")
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
 
-    by_case_wide = pd.read_csv(to_local_path(args.feature_table))
+    by_bus = pd.read_csv(to_local_path(args.feature_table))
     reports_dir, figures_dir = output_roots(to_local_path(args.output_dir))
-    evaluate_sensor_count(by_case_wide, reports_dir, figures_dir)
+    evaluate_sensor_count(by_bus, reports_dir, figures_dir)
     print(reports_dir / "sensor_count_curve.csv")
 
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -36,6 +37,7 @@ class EvaluationArtifacts:
     metrics: pd.DataFrame
     predictions: pd.DataFrame
     stratified_metrics: pd.DataFrame
+    feature_columns: dict[str, list[str]] | None = None
 
 
 def build_models() -> dict[str, Pipeline]:
@@ -148,7 +150,16 @@ def evaluate_models_for_group(by_case_wide: pd.DataFrame, feature_group: str, mo
         metrics=pd.DataFrame(metrics_rows).sort_values(["macro_f1", "balanced_accuracy"], ascending=False).reset_index(drop=True),
         predictions=pd.concat(pred_rows, ignore_index=True),
         stratified_metrics=pd.DataFrame(strat_rows),
+        feature_columns={feature_group: feature_columns},
     )
+
+
+def write_confusion_matrix_csv(truth: np.ndarray, pred: np.ndarray, labels: list[str], output_path: Path) -> None:
+    cm = confusion_matrix(truth, pred, labels=labels)
+    frame = pd.DataFrame(cm, index=labels, columns=labels)
+    frame.index.name = "True"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    frame.to_csv(output_path)
 
 
 def plot_confusion_matrix(truth: np.ndarray, pred: np.ndarray, labels: list[str], title: str, output_path: Path) -> None:
@@ -203,6 +214,13 @@ def evaluate_full_classification(by_case_wide: pd.DataFrame, reports_dir: Path, 
     best = artifacts.metrics.iloc[0]
     best_pred = artifacts.predictions.loc[(artifacts.predictions["Model"] == best["Model"]) & (artifacts.predictions["FeatureGroup"] == best["FeatureGroup"])]
     labels = [label for label in EVENT_CLASS_ORDER if label in by_case_wide["EventType"].unique()]
+    write_confusion_matrix_csv(
+        best_pred["EventType"].to_numpy(),
+        best_pred["PredictedEventType"].to_numpy(),
+        labels,
+        reports_dir / "confusion_matrix_full_wmu.csv",
+    )
+    best_pred.loc[~best_pred["IsCorrect"]].to_csv(reports_dir / "misclassified_cases_full_wmu.csv", index=False)
     plot_confusion_matrix(best_pred["EventType"].to_numpy(), best_pred["PredictedEventType"].to_numpy(), labels, f"Full WMU confusion matrix ({best['Model']})", figures_dir / "confusion_matrix_full_wmu.png")
     return artifacts
 
@@ -213,16 +231,32 @@ def evaluate_feature_ablation(by_case_wide: pd.DataFrame, reports_dir: Path, fig
     metrics_frames = []
     pred_frames = []
     strat_frames = []
+    feature_columns_by_group: dict[str, list[str]] = {}
     for group_name in ["DV_energy_only", "Voltage_time_only", "Voltage_time_freq", "Voltage_current", "Voltage_current_unbalance_sequence", "Impedance_added", "All_features"]:
         artifacts = evaluate_models_for_group(by_case_wide, group_name, models=models, selected_models=selected_models)
         metrics_frames.append(artifacts.metrics)
         pred_frames.append(artifacts.predictions)
+        feature_columns_by_group[group_name] = artifacts.feature_columns[group_name] if artifacts.feature_columns else []
         if not artifacts.stratified_metrics.empty:
             strat_frames.append(artifacts.stratified_metrics)
     metrics = pd.concat(metrics_frames, ignore_index=True)
     predictions = pd.concat(pred_frames, ignore_index=True)
     stratified = pd.concat(strat_frames, ignore_index=True) if strat_frames else pd.DataFrame()
     metrics.to_csv(reports_dir / "feature_ablation_metrics.csv", index=False)
+    used_columns_lines = []
+    for group_name, columns in feature_columns_by_group.items():
+        used_columns_lines.append(f"[{group_name}]")
+        used_columns_lines.append(f"count={len(columns)}")
+        used_columns_lines.extend(columns)
+        used_columns_lines.append("")
+    fingerprints = {
+        group_name: hashlib.md5("\n".join(feature_columns_by_group[group_name]).encode("utf-8")).hexdigest()
+        for group_name in feature_columns_by_group
+    }
+    used_columns_lines.append("[matrix_fingerprints]")
+    for group_name, fingerprint in fingerprints.items():
+        used_columns_lines.append(f"{group_name}={fingerprint}")
+    (reports_dir / "feature_ablation_used_columns.txt").write_text("\n".join(used_columns_lines) + "\n", encoding="utf-8")
 
     best_by_group = metrics.sort_values(["FeatureGroup", "macro_f1", "LoadSwitch_recall"], ascending=[True, False, False]).groupby("FeatureGroup", as_index=False).first()
     for metric_name, filename, ylabel in [
@@ -238,4 +272,4 @@ def evaluate_feature_ablation(by_case_wide: pd.DataFrame, reports_dir: Path, fig
         fig.tight_layout()
         fig.savefig(figures_dir / filename, dpi=200)
         plt.close(fig)
-    return EvaluationArtifacts(metrics=metrics, predictions=predictions, stratified_metrics=stratified)
+    return EvaluationArtifacts(metrics=metrics, predictions=predictions, stratified_metrics=stratified, feature_columns=feature_columns_by_group)

@@ -13,7 +13,10 @@ def list_cases(input_dir: str | Path) -> list[CaseMetadata]:
 
 def load_waveform_case(case: CaseMetadata) -> pd.DataFrame:
     try:
-        df = pd.read_excel(case.source_path, sheet_name=0, engine="openpyxl")
+        if case.source_path.suffix.lower() == ".csv":
+            df = pd.read_csv(case.source_path)
+        else:
+            df = pd.read_excel(case.source_path, sheet_name=0, engine="openpyxl")
     except Exception as exc:  # pragma: no cover - exercised by runtime data
         raise WaveformDataError(f"Failed to open {case.source_path.name}: {exc}") from exc
     if df.empty:
