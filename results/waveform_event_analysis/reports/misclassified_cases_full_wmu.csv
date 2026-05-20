@@ -1,0 +1,4 @@
+CaseName,EventType,TargetBus,Model,FeatureGroup,PredictedEventType,IsCorrect,LoadSwitchToFault
+Normal_Case01,Normal,,RandomForest,All_features,SLG_Fault,False,False
+Normal_Case02,Normal,,RandomForest,All_features,SLG_Fault,False,False
+Normal_Case03,Normal,,RandomForest,All_features,SLG_Fault,False,False

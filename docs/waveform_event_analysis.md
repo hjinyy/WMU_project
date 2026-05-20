@@ -20,32 +20,31 @@ Traditional PMU placement often optimizes topological observability or state-est
 
 A WMU location is therefore valuable when its local waveform is informative for classifying switching vs. fault events, not only when it improves static network observability.
 
-## 3. Dataset used in this run
+## 3. Dataset used in the current run
 
 Input directory used:
 - `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_raw`
 
-Detected files:
-- Total xlsx: 93
+Detected event files:
+- Total raw event files: 83
 - Normal: 3
-- LoadSwitch: 30
+- LoadSwitch: 20
 - SLG_Fault: 30
 - ThreePhase_Fault: 30
 
-Naming rules parsed by the pipeline:
-- `SLG_Fault_Bus01.xlsx`
-- `ThreePhase_Fault_Bus01.xlsx`
-- `LoadSwitch_Bus02.xlsx`
-- `LoadSwitch15pct_Bus02.xlsx`
-- `Normal_Case01.xlsx`
+Format mix:
+- xlsx: SLG, ThreePhase, Normal
+- csv: LoadSwitch
+
+LoadSwitch cases now represent **15% abrupt load increase** conditions only at buses with existing Pd/Qd:
+`2, 3, 4, 7, 8, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 29, 30`
 
 Each file contains one event case. `EventType` and `TargetBus` are inferred from the filename. `Normal` cases are stored with `TargetBus = NaN`.
 
 ## 4. Quality-control stage
 
-For every xlsx file, the pipeline checks:
-- workbook readability,
-- sheet readability,
+For every event file, the pipeline checks:
+- file readability,
 - `Time` column existence,
 - monotonic time stamps,
 - sampling-interval mean/std,
@@ -55,8 +54,8 @@ For every xlsx file, the pipeline checks:
 - NaN and inf counts,
 - zero-like buses.
 
-Run summary:
-- OK: 93
+Current run summary:
+- OK: 83
 - WARNING: 0
 - FAILED: 0
 
@@ -90,13 +89,13 @@ Validation:
 - StratifiedKFold when class counts permit it
 
 Important limitation:
-- only 3 Normal cases are available, so Normal-class metrics are unstable and the report explicitly keeps LOO as the primary validation result.
+- only 3 Normal cases are available, so Normal-class metrics are unstable and the report explicitly keeps LOO as the primary result.
 
 ## 7. Full-WMU classification results
 
 Best LOO result:
 - Model: RandomForest
-- Accuracy: 0.9677
+- Accuracy: 0.9639
 - Macro-F1: 0.7381
 - Balanced accuracy: 0.7500
 - LoadSwitch recall: 1.0000
@@ -104,31 +103,40 @@ Best LOO result:
 - Normal false alarm rate: 1.0000
 
 Interpretation:
-- All disturbance classes except `Normal` separate very strongly under the available dataset.
-- The main weakness is the tiny Normal set, which causes Normal recall to collapse to zero across the tested models.
+- LoadSwitch, SLG, and ThreePhase cases remain strongly separable.
+- The main weakness is the tiny Normal set, which causes Normal recall to collapse to zero in the tested models.
 
 ## 8. Feature ablation
 
-Observed result on this dataset:
-- `DV_energy_only`, `Voltage_time_only`, `Voltage_time_freq`, `Voltage_current`, `Voltage_current_unbalance_sequence`, `Impedance_added`, and `All_features` all reached the same top macro-F1 of 0.7381 under at least one model.
+The pipeline now writes `feature_ablation_used_columns.txt` so each feature group's actual columns and counts can be inspected directly.
+
+Observed result on this corrected 83-file dataset:
+- the RandomForest top result is tied across all seven feature groups at macro-F1 = 0.7381,
+- but the groups do **not** use the same matrices;
+- column counts differ substantially across groups.
 
 Interpretation:
-- On the current dataset, event separation is already dominated by strong disturbance signatures.
-- Richer features remain useful for future dataset expansion because they should matter more once switching intensity, fault resistance, clearing time, and operating-point diversity are broadened.
+- the previous concern about accidental column reuse is addressed by explicit column export and fingerprinting;
+- the remaining tie appears to come from dataset separability, not from a feature-group wiring bug.
 
-## 9. Sensor-count study
+## 9. Sensor-count study and leakage control
 
 The sensor-count workflow evaluates:
 - feature-aware greedy addition,
 - DV-energy ranking baseline,
 - random placement baseline.
 
+Leakage guard applied in the current version:
+- k-WMU evaluation is built only from `feature_table_by_bus` rows for the selected buses,
+- full-system case-level summary features such as `max_dV_energy`, `star_bus_dV`, and similar all-bus aggregates are excluded from k-WMU experiments,
+- `sensor_selection_debug.csv` is written to the external output folder for auditability.
+
 Current preliminary result:
-- the nearest-neighbor separability metric saturates immediately (`k = 1`) for the present dataset.
+- the nearest-neighbor sensor-count metric still saturates immediately (`k = 1`) on this dataset.
 
 Interpretation:
-- this indicates the current dataset is extremely separable at the class level and is not yet stressing the limited-sensor placement problem.
-- the placement workflow is therefore implemented and reproducible, but the present numerical result should be treated as a low-diversity baseline rather than a final placement conclusion.
+- after removing the all-bus leakage path, the corrected result still indicates very easy class separability under the present dataset,
+- so the current sensor-count curve should be treated as a baseline, not as a final placement conclusion.
 
 ## 10. Fault localization preliminary
 
@@ -136,11 +144,11 @@ Localization target set:
 - SLG_Fault
 - ThreePhase_Fault
 
-Method:
-- nearest-fingerprint matching on fault-only case vectors,
-- IEEE 30-bus 1-hop scoring using `data/ieee30_edges.csv`.
+Two evaluations are reported:
+- `self_matching`: sanity-check separability with self included,
+- `strict_loo`: leave-one-out preliminary localization with self excluded.
 
-Result:
+Strict LOO result:
 - SLG exact bus accuracy: 0.0
 - ThreePhase exact bus accuracy: 0.0
 - Overall exact bus accuracy: 0.0
@@ -148,19 +156,28 @@ Result:
 - Overall 1-hop accuracy: 0.3
 
 Interpretation:
-- with one case per bus per fault type, localization remains only a **preliminary separability analysis**.
-- exact leave-one-out matching is too strict for this dataset shape and should not be over-interpreted.
+- with one case per bus per fault type, localization remains only a **preliminary** fingerprint test,
+- self-matching is just a sanity check,
+- strict LOO is the more relevant result and remains weak.
 
 ## 11. Main takeaways
 
 - DV-energy is still a strong event-trigger feature.
-- Sag alone is not a sufficient research endpoint; the broader feature set is needed for future switching-vs-fault generalization studies.
-- Current and sequence-like features are the right direction for harder datasets even if the present ablation tie hides their value.
+- Sag alone is not a sufficient research endpoint; the broader feature set is still the right direction for future switching-vs-fault studies.
+- The current LoadSwitch 15% dataset is highly separable from faults in full-WMU classification.
 - WMU placement for waveform analytics should maximize discriminative information, not only detection coverage.
 
-## 12. Next research steps
+## 12. Current limitations
+
+- Normal class count is only 3.
+- LoadSwitch uses only one intensity level: 15% increase.
+- Fault resistance, clearing time, and inception angle are not varied.
+- Fault localization remains preliminary because there is only one case per bus per fault type.
+
+## 13. Next research steps
 
 - Add LoadSwitch levels at 5%, 15%, and 25%.
-- Vary fault resistance, clearing time, and inception angle.
+- Vary fault resistance.
+- Vary clearing time and inception angle.
 - Expand the dataset so train/test separation is meaningful.
 - Extend the study toward weak-grid or DER-integrated operating conditions.

@@ -12,20 +12,20 @@ Key entry points:
 - `scripts/figure1_coverage_vs_num_wmu.py` ... `scripts/figure6_3d_scatter.py`
 - `docs/research_summary.md`
 
-## New workflow: Waveform Event Classification Workflow
+## Waveform Event Classification Workflow
 
-This repository now also includes a separate 3-phase waveform event analysis pipeline for:
+This repository also includes a separate 3-phase waveform event analysis pipeline for:
 - `Normal`
 - `LoadSwitch`
 - `SLG_Fault`
 - `ThreePhase_Fault`
 
 Research goal:
-- extract bus-level WMU waveform features from raw 3-phase event files,
-- evaluate multi-class event classification,
+- extract WMU waveform features from raw 3-phase event files,
+- evaluate four-class event classification,
 - compare feature ablations,
 - study limited-WMU sensor-count performance,
-- and run preliminary fault-localization separability analysis.
+- and run preliminary fault-localization analysis.
 
 ### Repository layout for waveform-event analysis
 
@@ -47,17 +47,29 @@ Research goal:
 - `docs/waveform_dataset_notes.md`
 - `results/waveform_event_analysis/README.md`
 
-### Input dataset
+### Input dataset used in the current run
 
-Primary raw-data directory used in this run:
+Primary raw-data directory:
 - Windows: `C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_raw`
-- WSL/Linux path used here: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_raw`
+- WSL/Linux: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_raw`
 
-Output directory used in this run:
+Output directory:
 - Windows: `C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_data`
-- WSL/Linux path used here: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_data`
+- WSL/Linux: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_data`
 
-Raw Excel files are intentionally ignored by git.
+Current raw event inventory:
+- `83` total event files
+- `30` `SLG_Fault_Bus*.xlsx`
+- `30` `ThreePhase_Fault_Bus*.xlsx`
+- `3` `Normal_Case*.xlsx`
+- `20` `LoadSwitch_Bus*.csv`
+
+The LoadSwitch cases were regenerated as **15% abrupt load increases** only at buses with existing Pd or Qd:
+`2, 3, 4, 7, 8, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 29, 30`
+
+The pipeline now supports mixed input formats:
+- xlsx for SLG / ThreePhase / Normal
+- csv for LoadSwitch
 
 ### Installation
 
@@ -85,9 +97,15 @@ External output directory:
 - `feature_table_by_case_wide.csv`
 - `reports/data_quality_report.csv`
 - `reports/classification_full_wmu_metrics.csv`
+- `reports/confusion_matrix_full_wmu.csv`
+- `reports/misclassified_cases_full_wmu.csv`
 - `reports/feature_ablation_metrics.csv`
+- `reports/feature_ablation_used_columns.txt`
 - `reports/sensor_count_curve.csv`
+- `reports/selected_wmu_by_k.csv`
+- `reports/sensor_selection_debug.csv`
 - `reports/fault_localization_preliminary.csv`
+- `reports/fault_localization_debug.csv`
 - `reports/final_analysis_summary.md`
 - `figures/*.png`
 
@@ -97,15 +115,15 @@ Tracked repo summaries:
 
 ### Current run snapshot
 
-From the 2026-05-20 run on the available dataset:
-- input xlsx files: `93`
-- class counts: `Normal=3`, `LoadSwitch=30`, `SLG_Fault=30`, `ThreePhase_Fault=30`
-- data-quality status: `OK=93`, `WARNING=0`, `FAILED=0`
+From the 2026-05-20 corrected 83-file dataset run:
+- input raw event files: `83`
+- class counts: `Normal=3`, `LoadSwitch=20`, `SLG_Fault=30`, `ThreePhase_Fault=30`
+- data-quality status: `OK=83`, `WARNING=0`, `FAILED=0`
 - best full-WMU LOO classifier: `RandomForest`
 - best full-WMU macro-F1: `0.7381`
 - best balanced accuracy: `0.7500`
 
-See `results/waveform_event_analysis/reports/final_analysis_summary.md` for the detailed summary.
+See `results/waveform_event_analysis/reports/final_analysis_summary.md` for details.
 
 ## Git hygiene
 
@@ -119,4 +137,4 @@ The repository excludes raw and large local artifacts such as:
 - `results/raw/`
 - `results/intermediate/`
 
-Small summary CSVs and key figures under `results/waveform_event_analysis/` remain trackable.
+Raw xlsx/csv event files and large intermediate tables stay outside git. Compact summary CSVs and key figures under `results/waveform_event_analysis/` remain trackable.
