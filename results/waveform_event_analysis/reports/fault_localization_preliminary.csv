@@ -1,0 +1,4 @@
+EventType,exact_bus_accuracy,top3_accuracy,one_hop_accuracy
+SLG_Fault,0.0,0.0,0.1
+ThreePhase_Fault,0.0,0.0,0.5
+Overall,0.0,0.0,0.3
