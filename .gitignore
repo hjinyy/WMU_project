@@ -4,4 +4,12 @@ __pycache__/
 dist/
 build/
 *.pyc
+*.xlsx
+*.mat
+*.slx
+WMU_batch_raw/
+WMU_batch_data/
 outputs/
+results/raw/
+results/intermediate/
+*.egg-info/

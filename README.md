@@ -1,71 +1,65 @@
 # WMU Project
 
-Python tooling for WMU observability analysis on IEEE 30-bus SLG fault sweeps.
+Python tooling for WMU analysis on the IEEE 30-bus system.
 
-## Scope
+## Existing workflow: SLG observability analysis
 
-This repository organizes the workflow discussed in the study:
+The original repository workflow is preserved for the IEEE 30-bus SLG fault sweep observability study.
 
-- 10 candidate WMU buses are evaluated against 30 SLG fault cases
-- each case stores differential A-phase signals and raw A-phase signals
-- the main per-case, per-WMU metrics are:
-  - `DV_energy`
-  - `Sag`
-  - `Res_ratio`
-  - `StarWMU`
-- coverage and minimum-WMU studies are then derived from those metrics
-
-## Repository layout
-
-- `docs/research_summary.md`
-  Research notes, assumptions, metric definitions, and interpretation guide.
-- `requirements.txt`
-  Python dependencies.
-- `data/ieee30_edges.csv`
-  IEEE 30-bus graph edges used by the network plot.
+Key entry points:
 - `src/wmu_project/analysis.py`
-  Shared loading, metric extraction, coverage, and plotting helpers.
 - `scripts/analyze_observability.py`
-  End-to-end analysis that writes Excel summaries.
-- `scripts/figure1_coverage_vs_num_wmu.py`
-  Coverage vs number of WMUs.
-- `scripts/figure2_wmu_ranking.py`
-  WMU ranking bars for mean DV and Star count.
-- `scripts/figure3_case_wmu_heatmap.py`
-  Case-by-WMU heatmaps for DV and Sag.
-- `scripts/figure4_network_graph.py`
-  IEEE 30-bus network plot with WMU nodes and StarWMU counts.
-- `scripts/figure5_wmu_boxplot.py`
-  WMU DV distribution by case.
-- `scripts/figure6_3d_scatter.py`
-  3D scatter of `DV_energy_max`, `Sag_max`, `Res_ratio_max`.
+- `scripts/figure1_coverage_vs_num_wmu.py` ... `scripts/figure6_3d_scatter.py`
+- `docs/research_summary.md`
 
-## Expected input
+## New workflow: Waveform Event Classification Workflow
 
-Primary input is an Excel workbook like `WMU_fault_results_sag.xlsx` with sheets:
+This repository now also includes a separate 3-phase waveform event analysis pipeline for:
+- `Normal`
+- `LoadSwitch`
+- `SLG_Fault`
+- `ThreePhase_Fault`
 
-- `Summary`
-- `Fault_1` ... `Fault_30`
+Research goal:
+- extract bus-level WMU waveform features from raw 3-phase event files,
+- evaluate multi-class event classification,
+- compare feature ablations,
+- study limited-WMU sensor-count performance,
+- and run preliminary fault-localization separability analysis.
 
-Each fault sheet is expected to contain:
+### Repository layout for waveform-event analysis
 
-- `Time_s`
-- `dV_<bus>_A`
-- `dI_<bus>_A`
-- `Vraw_<bus>_A`
-- `Iraw_<bus>_A`
+- `src/wmu_project/waveform_io.py`
+- `src/wmu_project/waveform_quality.py`
+- `src/wmu_project/waveform_features.py`
+- `src/wmu_project/waveform_classification.py`
+- `src/wmu_project/waveform_sensor_selection.py`
+- `src/wmu_project/waveform_localization.py`
+- `src/wmu_project/waveform_utils.py`
+- `scripts/inspect_waveform_dataset.py`
+- `scripts/export_waveform_feature_table.py`
+- `scripts/run_waveform_event_analysis.py`
+- `scripts/run_waveform_classification.py`
+- `scripts/run_waveform_sensor_selection.py`
+- `scripts/run_waveform_localization.py`
+- `docs/waveform_event_analysis.md`
+- `docs/waveform_feature_definitions.md`
+- `docs/waveform_dataset_notes.md`
+- `results/waveform_event_analysis/README.md`
 
-for the selected WMU buses.
+### Input dataset
 
-## Recommended default settings
+Primary raw-data directory used in this run:
+- Windows: `C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_raw`
+- WSL/Linux path used here: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_raw`
 
-- WMU buses: `3, 5, 8, 10, 11, 12, 23, 26, 28, 29`
-- fault type: `SLG`
-- base frequency: `50 Hz`
-- event time: `2.2 s`
-- tuned detection threshold: `thr_dv = 0.072`
+Output directory used in this run:
+- Windows: `C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_data`
+- WSL/Linux path used here: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_data`
 
-## Installation
+Raw Excel files are intentionally ignored by git.
+
+### Installation
 
 ```bash
 python -m venv .venv
@@ -74,32 +68,55 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-## End-to-end analysis
+### End-to-end waveform-event analysis
 
 ```bash
-python scripts/analyze_observability.py \
-  --input /path/to/WMU_fault_results_sag.xlsx \
-  --output-dir outputs \
-  --thr-dv 0.072
+python scripts/run_waveform_event_analysis.py \
+  --input-dir "C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_raw" \
+  --output-dir "C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_data" \
+  --f0 50
 ```
 
-## Figure generation
+### Main generated outputs
 
-```bash
-python scripts/figure1_coverage_vs_num_wmu.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-python scripts/figure2_wmu_ranking.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-python scripts/figure3_case_wmu_heatmap.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-python scripts/figure4_network_graph.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-python scripts/figure5_wmu_boxplot.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-python scripts/figure6_3d_scatter.py --input /path/to/WMU_fault_results_sag.xlsx --output outputs
-```
+External output directory:
+- `feature_table_by_bus.csv`
+- `feature_table_by_case.csv`
+- `feature_table_by_case_wide.csv`
+- `reports/data_quality_report.csv`
+- `reports/classification_full_wmu_metrics.csv`
+- `reports/feature_ablation_metrics.csv`
+- `reports/sensor_count_curve.csv`
+- `reports/fault_localization_preliminary.csv`
+- `reports/final_analysis_summary.md`
+- `figures/*.png`
 
-## Interpretation targets
+Tracked repo summaries:
+- `results/waveform_event_analysis/reports/`
+- `results/waveform_event_analysis/figures/`
 
-The workflow is designed to support the following expected patterns:
+### Current run snapshot
 
-- `Coverage vs #WMU` should look like a saturating staircase.
-- `StarWMU` should be distributed across several buses rather than collapse to a single one.
-- `Case x WMU` heatmaps should show block or zone structure.
-- greedy or set-cover results should expose a core group of hub sensors and a smaller set of peripheral sensors.
-- robust one-drop requirements should demand one or two more WMUs than plain coverage.
+From the 2026-05-20 run on the available dataset:
+- input xlsx files: `93`
+- class counts: `Normal=3`, `LoadSwitch=30`, `SLG_Fault=30`, `ThreePhase_Fault=30`
+- data-quality status: `OK=93`, `WARNING=0`, `FAILED=0`
+- best full-WMU LOO classifier: `RandomForest`
+- best full-WMU macro-F1: `0.7381`
+- best balanced accuracy: `0.7500`
+
+See `results/waveform_event_analysis/reports/final_analysis_summary.md` for the detailed summary.
+
+## Git hygiene
+
+The repository excludes raw and large local artifacts such as:
+- `*.xlsx`
+- `*.mat`
+- `*.slx`
+- `WMU_batch_raw/`
+- `WMU_batch_data/`
+- `outputs/`
+- `results/raw/`
+- `results/intermediate/`
+
+Small summary CSVs and key figures under `results/waveform_event_analysis/` remain trackable.
