@@ -169,3 +169,23 @@ Key mapping from feature families to diagnostics figures:
 Interpretation note:
 - the current diagnostics package is intentionally centered on **feature separability** and **dataset limitation analysis**;
 - it should not be read as a claim that the presently observed classification score is already final or broadly generalizable.
+
+## 10. Trigger-first interpretation note
+
+The updated classification workflow uses a **hierarchical trigger-first view**:
+1. decide whether a case looks like `Normal` or `Event`,
+2. only then classify the event into `LoadSwitch`, `SLG_Fault`, or `ThreePhase_Fault`.
+
+This matters because some feature families are better suited to **event triggering** than to **event subtype separation**.
+
+Recommended trigger-facing features:
+- `max_dV_energy`
+- `max_dI_energy`
+- `max_sag`
+- `I_rms_jump_3ph_max` / derived case-level max current jump
+- `max_Z_drop_ratio`
+
+Interpretation guidance:
+- these are change-oriented features and should be near zero for true no-event/Normal cases;
+- absolute steady-state quantities such as `max_V0_ratio` or `max_V_unbalance` may remain nonzero even without an event, so they should not be treated as the primary no-event trigger by themselves;
+- therefore the current pipeline uses the change-oriented features first, and uses the richer feature set mainly for subtype separation and diagnostics.

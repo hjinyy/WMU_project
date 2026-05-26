@@ -95,3 +95,33 @@ Important framing:
   How do disturbance signatures spread across `TargetBus × ObservedBus`?
 - `figures/waveform_representative_*.png`  
   What do representative raw waveforms look like around the event window?
+
+## Normal/SLG debugging update
+
+A dedicated debugging pass was added because the earlier flat classifier predicted all three `Normal` cases as `SLG_Fault`.
+
+Important framing:
+- the current tracked results are **not** a final claim that the event taxonomy is already solved;
+- they are a **diagnostic package** for checking trigger behavior, class overlap, and possible raw-data / label-integrity issues.
+
+### Additional tracked reports
+
+- `reports/normal_raw_sanity_check.csv`
+- `reports/label_parsing_check.csv`
+- `reports/normal_vs_event_feature_values.csv`
+- `reports/classification_flat_vs_hierarchical_metrics.csv`
+
+### Additional tracked figures
+
+- `figures/normal_waveform_sanity_check.png`
+- `figures/normal_vs_slg_core_feature_boxplot.png`
+- `figures/confusion_matrix_hierarchical_full_wmu.png`
+- `figures/feature_ablation_normal_recall.png`
+- `figures/sensor_count_normal_recall.png`
+
+### What these new artifacts are for
+
+- verify that Normal raw waveforms are genuinely low-trigger and steady-state;
+- check whether `SLG_Fault` cases are numerically separable from `Normal` in the current dataset;
+- compare the original flat classifier with a new hierarchical trigger-first classifier;
+- keep the emphasis on **feature separability and dataset limitations**, not on a final performance claim.

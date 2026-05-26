@@ -235,3 +235,39 @@ Important framing:
 - `reports/feature_diagnostics_summary.md`
 
 These artifacts should be interpreted as a structured diagnostic package for understanding **why** features separate classes (or fail to do so), not only **how well** a classifier scores on the current small dataset.
+
+## 15. Normal/SLG debugging update
+
+A dedicated debugging pass was added because the earlier flat full-WMU confusion matrix predicted all three `Normal` cases as `SLG_Fault`.
+
+Current interpretation:
+- this is **not** treated as a result that can simply be ignored;
+- the pipeline now explicitly audits whether the issue comes from feature extraction, label parsing, event-window handling, or raw-data integrity;
+- the current tracked results emphasize **feature separability and dataset-integrity diagnosis**, not a final classification claim.
+
+### New debugging artifacts and the questions they answer
+
+- `reports/normal_raw_sanity_check.csv`  
+  Are the three Normal cases steady-state, low-trigger, and free of obvious event-like changes?
+- `figures/normal_waveform_sanity_check.png`  
+  Do `Va/Vb/Vc/Ia/Ib/Ic` remain normal around 0.45-0.65 s for the Normal cases?
+- `reports/label_parsing_check.csv`  
+  Are `Normal`, `LoadSwitch`, `SLG_Fault`, and `ThreePhase_Fault` parsed into the intended labels and target buses?
+- `reports/normal_vs_event_feature_values.csv`  
+  How do Normal case-level feature values compare numerically against event-labeled cases?
+- `figures/normal_vs_slg_core_feature_boxplot.png`  
+  Are the Normal and SLG case-level summaries genuinely separable, or are they numerically overlapped?
+- `reports/classification_flat_vs_hierarchical_metrics.csv`  
+  How does the original flat classifier compare to the new hierarchical `Normal-vs-Event -> event-type` structure?
+- `figures/confusion_matrix_hierarchical_full_wmu.png`  
+  Does the hierarchical trigger improve Normal recall without hiding other failure modes?
+- `figures/feature_ablation_normal_recall.png`  
+  Which feature groups help the hierarchical pipeline preserve Normal recall?
+- `figures/sensor_count_normal_recall.png`  
+  Under limited WMU counts, how stable is Normal recall after the trigger-first change?
+
+### Current conclusion from the debugging pass
+
+- the Normal raw waveforms remain low-trigger / near-steady-state;
+- the current issue is driven less by Normal raw behavior itself and more by the fact that many `SLG_Fault` cases appear indistinguishable from `Normal` under the present raw dataset / feature tables;
+- therefore the current results must be read as a **pipeline + dataset integrity diagnostic**, not as a final event-classification conclusion.
