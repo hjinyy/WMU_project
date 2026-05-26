@@ -147,3 +147,25 @@ Impedance-collapse summaries.
 - `Bus30__Z_drop_ratio`
 
 This table is the main input for classification, sensor-selection, and localization workflows.
+
+## 9. Diagnostics figure mapping
+
+The feature-diagnostics pass uses the definitions above to answer interpretation-focused questions rather than to make a final performance claim.
+
+Key mapping from feature families to diagnostics figures:
+- `max_dV_energy`, `max_dI_energy`, `max_sag`, `max_HF_ratio`, `max_Res_ratio`, `max_V0_ratio`, `max_I0_ratio`, `max_V_unbalance`, `max_I_unbalance`, `max_Z_drop_ratio`  
+  → `feature_boxplot_core_features.png`, `feature_violin_core_features.png`, and the six 2D scatter figures.
+- `liss_corr_abs_*`, `liss_area_norm_*` representative case-level aggregates  
+  → core-feature distribution plots, correlation heatmap, and summary diagnostics.
+- case-level core features  
+  → `normal_misclassification_core_features.png` and `feature_correlation_heatmap.png`.
+- bus-expanded wide features such as `Bus07__dI_energy_C` or `Bus26__Z_drop_ratio`  
+  → `randomforest_top30_feature_importance.png` and `important_wmu_bus_count.png`.
+- bus-level spatial features such as `dV_energy_3ph_max`, `dI_energy_3ph_max`, `I0_ratio`  
+  → the six `heatmap_*.png` TargetBus × ObservedBus figures.
+- raw waveform channels `Va/Vb/Vc/Ia/Ib/Ic`  
+  → the four representative waveform figures.
+
+Interpretation note:
+- the current diagnostics package is intentionally centered on **feature separability** and **dataset limitation analysis**;
+- it should not be read as a claim that the presently observed classification score is already final or broadly generalizable.
