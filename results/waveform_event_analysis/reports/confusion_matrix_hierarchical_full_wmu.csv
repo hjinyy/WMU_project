@@ -1,0 +1,5 @@
+True,Normal,LoadSwitch,SLG_Fault,ThreePhase_Fault
+Normal,3,0,0,0
+LoadSwitch,0,20,0,0
+SLG_Fault,30,0,0,0
+ThreePhase_Fault,0,0,0,30

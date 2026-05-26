@@ -125,6 +125,22 @@ From the 2026-05-20 corrected 83-file dataset run:
 
 See `results/waveform_event_analysis/reports/final_analysis_summary.md` for details.
 
+### Normal/SLG debugging status
+
+A later debugging pass found that the `Normal -> SLG_Fault` failure mode cannot be interpreted as a simple model weakness alone. The current workflow now also:
+- audits Normal raw waveforms directly,
+- checks label parsing and feature-table integrity,
+- compares the original flat classifier with a hierarchical `Normal-vs-Event` trigger-first classifier, and
+- treats the present outputs as **feature/dataset diagnostics**, not as a final classification claim, when `Normal` and many `SLG_Fault` cases appear numerically indistinguishable.
+
+Key additional outputs:
+- `results/waveform_event_analysis/reports/normal_raw_sanity_check.csv`
+- `results/waveform_event_analysis/reports/label_parsing_check.csv`
+- `results/waveform_event_analysis/reports/classification_flat_vs_hierarchical_metrics.csv`
+- `results/waveform_event_analysis/figures/confusion_matrix_hierarchical_full_wmu.png`
+- `results/waveform_event_analysis/figures/normal_waveform_sanity_check.png`
+- `results/waveform_event_analysis/figures/normal_vs_slg_core_feature_boxplot.png`
+
 ## Git hygiene
 
 The repository excludes raw and large local artifacts such as:
