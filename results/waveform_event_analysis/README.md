@@ -57,3 +57,41 @@ python scripts/run_waveform_event_analysis.py \
   --output-dir "C:\Users\user\Documents\MATLAB\WMU_test\WMU_batch_data" \
   --f0 50
 ```
+
+## Feature diagnostics extension
+
+The tracked results now also include a **feature diagnostics package** whose main goal is to explain how selected waveform features separate:
+- Normal
+- LoadSwitch
+- SLG_Fault
+- ThreePhase_Fault
+
+Important framing:
+- the emphasis is **not** a final claim about classification performance;
+- the emphasis **is** feature separability, Normal false-alarm interpretation, feature redundancy, spatial response structure, and dataset limitations.
+
+### Added reports
+
+- `reports/feature_distribution_summary.csv` - EventType-wise mean/std/median/q25/q75 for core features
+- `reports/normal_misclassification_feature_values.csv` - feature values and class-relative positions for the three Normal→SLG false alarms
+- `reports/feature_correlation_matrix.csv` - case-level core feature correlation matrix
+- `reports/randomforest_feature_importance.csv` - fitted RandomForest feature importance over the wide feature table
+- `reports/important_wmu_bus_count.csv` - observed-bus frequency among top-30 important features
+- `reports/feature_diagnostics_summary.md` - narrative diagnostics summary
+
+### Added figures and the questions they answer
+
+- `figures/feature_boxplot_core_features.png` / `figures/feature_violin_core_features.png`  
+  Which core features differ by class, and how stable are those distributions?
+- `figures/scatter_dv_di.png`, `figures/scatter_sag_di.png`, `figures/scatter_i0_v0.png`, `figures/scatter_res_hf.png`, `figures/scatter_zdrop_di.png`, `figures/scatter_unbalance.png`  
+  Which 2D feature combinations visually separate switching from faults or balanced from unbalanced events?
+- `figures/normal_misclassification_core_features.png`  
+  Why were all three Normal cases predicted as `SLG_Fault`?
+- `figures/feature_correlation_heatmap.png`  
+  Which core features are strongly redundant?
+- `figures/randomforest_top30_feature_importance.png` / `figures/important_wmu_bus_count.png`  
+  Which wide-table features and buses dominate the fitted RandomForest model?
+- `figures/heatmap_*.png`  
+  How do disturbance signatures spread across `TargetBus × ObservedBus`?
+- `figures/waveform_representative_*.png`  
+  What do representative raw waveforms look like around the event window?

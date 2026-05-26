@@ -181,3 +181,57 @@ Interpretation:
 - Vary clearing time and inception angle.
 - Expand the dataset so train/test separation is meaningful.
 - Extend the study toward weak-grid or DER-integrated operating conditions.
+
+## 14. Feature diagnostics extension
+
+The current diagnostics pass adds a **feature-interpretation layer** on top of the baseline classification/localization pipeline.
+
+Important framing:
+- the current results are **not** presented as a final classification-performance claim;
+- the emphasis is on **feature separability**, **Normal / LoadSwitch / Fault overlap structure**, and **dataset limitations** in the 83-case run.
+
+### Added diagnostics figures and the questions they answer
+
+- `figures/feature_boxplot_core_features.png`  
+  Which core case-level features show visibly different class-wise distributions?
+- `figures/feature_violin_core_features.png`  
+  How wide or narrow is each class distribution, especially with the tiny Normal set?
+- `figures/scatter_dv_di.png`  
+  Do voltage-change energy and current-change energy separate switching from faults in 2D?
+- `figures/scatter_sag_di.png`  
+  Is sag severity alone enough, or does it need current disturbance strength together?
+- `figures/scatter_i0_v0.png`  
+  Do sequence-like zero-sequence responses separate unbalanced vs. balanced events?
+- `figures/scatter_res_hf.png`  
+  Do residual-frequency and high-frequency disturbance ratios provide extra morphology clues?
+- `figures/scatter_zdrop_di.png`  
+  Does apparent-impedance collapse help distinguish switching from faults?
+- `figures/scatter_unbalance.png`  
+  Do voltage/current unbalance features form event-type clusters?
+- `figures/normal_misclassification_core_features.png`  
+  Where do the three misclassified Normal cases sit relative to Normal / LoadSwitch / SLG / ThreePhase distributions?
+- `figures/feature_correlation_heatmap.png`  
+  Which core features are redundant or strongly coupled?
+- `figures/randomforest_top30_feature_importance.png`  
+  Which wide-table features dominate the fitted RandomForest decision surface?
+- `figures/important_wmu_bus_count.png`  
+  Which observed buses appear most often among the top-ranked RandomForest features?
+- `figures/heatmap_slg_dv_energy.png`, `figures/heatmap_threephase_dv_energy.png`, `figures/heatmap_loadswitch_dv_energy.png`  
+  Where does voltage disturbance energy become strongest across TargetBus × ObservedBus?
+- `figures/heatmap_slg_i0_ratio.png`  
+  Where is the zero-sequence-like current response strongest for SLG events?
+- `figures/heatmap_threephase_di_energy.png`, `figures/heatmap_loadswitch_di_energy.png`  
+  How does current disturbance energy propagate spatially for three-phase faults and load switching?
+- `figures/waveform_representative_normal.png`, `figures/waveform_representative_loadswitch.png`, `figures/waveform_representative_slg.png`, `figures/waveform_representative_threephase.png`  
+  What do representative raw Va/Vb/Vc and Ia/Ib/Ic traces look like around the event window?
+
+### Added diagnostics reports
+
+- `reports/feature_distribution_summary.csv`
+- `reports/normal_misclassification_feature_values.csv`
+- `reports/feature_correlation_matrix.csv`
+- `reports/randomforest_feature_importance.csv`
+- `reports/important_wmu_bus_count.csv`
+- `reports/feature_diagnostics_summary.md`
+
+These artifacts should be interpreted as a structured diagnostic package for understanding **why** features separate classes (or fail to do so), not only **how well** a classifier scores on the current small dataset.
