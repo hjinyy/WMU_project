@@ -1,0 +1,7 @@
+FeatureSetting,Evaluation,accuracy,macro_f1,balanced_accuracy,recall_SLG_Fault,precision_SLG_Fault,f1_SLG_Fault,recall_ThreePhase_Fault,precision_ThreePhase_Fault,f1_ThreePhase_Fault,swap_rate
+existing_wide_features,LOO,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+existing_wide_features,GroupedByTargetBus,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+event_type_summary_features,LOO,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+event_type_summary_features,GroupedByTargetBus,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+hybrid_features,LOO,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+hybrid_features,GroupedByTargetBus,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0

@@ -189,3 +189,33 @@ Interpretation guidance:
 - these are change-oriented features and should be near zero for true no-event/Normal cases;
 - absolute steady-state quantities such as `max_V0_ratio` or `max_V_unbalance` may remain nonzero even without an event, so they should not be treated as the primary no-event trigger by themselves;
 - therefore the current pipeline uses the change-oriented features first, and uses the richer feature set mainly for subtype separation and diagnostics.
+
+## 11. Representation split for subtype studies
+
+For the subtype-debug stage, features are conceptually split into two lanes:
+
+### A. `event_type_summary_features`
+These are designed for event-type / fault-subtype discrimination and intentionally suppress direct bus identity.
+
+Examples:
+- `phase_sag_imbalance_*`
+- `dV_phase_imbalance_*`
+- `dI_phase_imbalance_*`
+- `A_phase_sag_dominance_*`
+- `A_phase_dV_dominance_*`
+- `A_phase_dI_dominance_*`
+- `V0_ratio_*`, `I0_ratio_*`
+- `V2_ratio_*`, `I2_ratio_*`
+- `threephase_balance_score_*`
+- `zero_sequence_dominance_score_*`
+- `SLG_score_candidate_*`
+- `ThreePhase_score_candidate_*`
+
+These are aggregated across WMUs by max / mean / median / std / q75 / q95 so the resulting table does **not** directly encode a specific observed-bus column identity.
+
+### B. `localization_features`
+These preserve the bus-resolved wide spatial fingerprint and remain appropriate for localization-style nearest-neighbor or bus-identification tasks.
+
+Practical takeaway:
+- if one representation is used for both tasks, target-bus fingerprint can dominate subtype semantics;
+- therefore subtype classification and localization should be evaluated separately when the dataset is small and bus-unique cases are present.

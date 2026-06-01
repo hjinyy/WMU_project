@@ -1,5 +1,5 @@
 FeatureGroup,Strategy,TriggerMethod,TriggerModel,EventModel,Model,Validation,accuracy,macro_f1,balanced_accuracy,Notes,precision_Normal,recall_Normal,f1_Normal,support_Normal,precision_LoadSwitch,recall_LoadSwitch,f1_LoadSwitch,support_LoadSwitch,precision_SLG_Fault,recall_SLG_Fault,f1_SLG_Fault,support_SLG_Fault,precision_ThreePhase_Fault,recall_ThreePhase_Fault,f1_ThreePhase_Fault,support_ThreePhase_Fault,Fault_precision,Normal_false_alarm_rate,Normal_recall,LoadSwitch_recall,LoadSwitch_to_Fault_count
-All_features,flat,none,none,RandomForest,RandomForest,LOO,0.27710843373493976,0.5,0.5,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,0.0,0.0,0.0,30,0.0,0.0,0.0,30,1.0,0.0,1.0,1.0,0
-All_features,flat,none,none,LogisticRegression,LogisticRegression,LOO,0.060240963855421686,0.11067193675889328,0.275,,0.15,1.0,0.2608695652173913,3,1.0,0.1,0.18181818181818182,20,0.0,0.0,0.0,30,0.0,0.0,0.0,30,0.9836065573770492,0.0,1.0,0.1,1
-All_features,hierarchical,rule_based,RuleTrigger,RandomForest,RandomForest,LOO,0.27710843373493976,0.5,0.5,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,0.0,0.0,0.0,30,0.0,0.0,0.0,30,1.0,0.0,1.0,1.0,0
-All_features,hierarchical,binary_ml,RandomForest,RandomForest,RandomForest,LOO,0.27710843373493976,0.5,0.5,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,0.0,0.0,0.0,30,0.0,0.0,0.0,30,1.0,0.0,1.0,1.0,0
+All_features,flat,none,none,LogisticRegression,LogisticRegression,LOO,1.0,1.0,1.0,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,1.0,1.0,1.0,30,1.0,1.0,1.0,30,1.0,0.0,1.0,1.0,0
+All_features,flat,none,none,RandomForest,RandomForest,LOO,1.0,1.0,1.0,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,1.0,1.0,1.0,30,1.0,1.0,1.0,30,1.0,0.0,1.0,1.0,0
+All_features,hierarchical,rule_based,RuleTrigger,RandomForest,RandomForest,LOO,1.0,1.0,1.0,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,1.0,1.0,1.0,30,1.0,1.0,1.0,30,1.0,0.0,1.0,1.0,0
+All_features,hierarchical,binary_ml,RandomForest,RandomForest,RandomForest,LOO,1.0,1.0,1.0,,1.0,1.0,1.0,3,1.0,1.0,1.0,20,1.0,1.0,1.0,30,1.0,1.0,1.0,30,1.0,0.0,1.0,1.0,0

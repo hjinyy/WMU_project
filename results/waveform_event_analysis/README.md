@@ -142,3 +142,28 @@ What improved:
 What remains unsolved:
 - the current classifier still swaps `SLG_Fault` and `ThreePhase_Fault` almost perfectly.
 - so the present outputs should still be interpreted as a **feature/dataset diagnostic package**, not as a final event-classification benchmark.
+
+## Event-classification vs localization split
+
+A later subtype-debug pass concluded that the original wide case representation can over-emphasize target-bus fingerprint.
+
+What that means:
+- a feature table that is good for localization may be overly location-dominant for subtype classification;
+- subtype classification should rely more on phase asymmetry / sequence / event-summary descriptors;
+- localization can keep the explicit bus-wide fingerprint.
+
+Added outputs:
+- `reports/fault_pair_distance_debug.csv`
+- `reports/classification_grouped_by_targetbus_metrics.csv`
+- `reports/classification_feature_representation_comparison.csv`
+- `reports/fault_subtype_binary_metrics.csv`
+- `reports/event_type_feature_importance.csv`
+- `reports/slg_threephase_feature_summary.csv`
+- `figures/fault_pair_distance_boxplot.png`
+- `figures/confusion_matrix_grouped_by_targetbus.png`
+- `figures/confusion_matrix_event_type_summary.png`
+- `figures/confusion_matrix_fault_subtype_binary.png`
+- `figures/event_type_top30_feature_importance.png`
+- `figures/slg_threephase_subtype_feature_boxplot.png`
+- `figures/sensor_count_event_classification_macro_f1.png`
+- `figures/sensor_count_localization_accuracy.png`

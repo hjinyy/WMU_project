@@ -283,3 +283,25 @@ Key outcome:
 
 Important framing:
 - these regenerated results should still be treated as **diagnostic / iterative research outputs**, not a final classification claim.
+
+## 17. Event-classification vs localization representation split
+
+A follow-up subtype-debug pass tested the hypothesis that the original case-wide feature representation was too location-dominant.
+
+Main finding:
+- when fault cases are evaluated with a representation that strongly preserves target-bus fingerprint, the classifier can prefer the **same-bus opposite fault type** over the correct subtype;
+- this means event classification and fault localization should not be forced to share exactly the same feature representation.
+
+New artifacts from this pass:
+- `results/waveform_event_analysis/reports/fault_pair_distance_debug.csv`
+- `results/waveform_event_analysis/reports/classification_grouped_by_targetbus_metrics.csv`
+- `results/waveform_event_analysis/reports/classification_feature_representation_comparison.csv`
+- `results/waveform_event_analysis/reports/fault_subtype_binary_metrics.csv`
+- `results/waveform_event_analysis/reports/event_type_feature_importance.csv`
+- `results/waveform_event_analysis/reports/slg_threephase_feature_summary.csv`
+- `features/feature_table_event_type_summary.csv`
+- `features/feature_table_localization_wide.csv`
+
+Interpretation note:
+- event-type recognition should emphasize phase asymmetry, sequence content, and event-type summary descriptors;
+- localization can still benefit from spatially explicit wide fingerprints.
