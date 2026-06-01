@@ -1,0 +1,3 @@
+model_name,event_class_order,model_classes
+RandomForest,Normal|LoadSwitch|SLG_Fault|ThreePhase_Fault,LoadSwitch|Normal|SLG_Fault|ThreePhase_Fault
+LogisticRegression,Normal|LoadSwitch|SLG_Fault|ThreePhase_Fault,LoadSwitch|Normal|SLG_Fault|ThreePhase_Fault
