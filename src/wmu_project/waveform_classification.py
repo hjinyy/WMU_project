@@ -163,6 +163,8 @@ def aggregate_trigger_features(frame: pd.DataFrame, feature_columns: list[str] |
 
     trigger = pd.DataFrame(data)
     trigger = trigger.replace([np.inf, -np.inf], np.nan)
+    if not trigger.empty:
+        trigger = trigger.fillna(0.0)
     return trigger
 
 
@@ -483,8 +485,8 @@ def evaluate_feature_ablation(by_case_wide: pd.DataFrame, reports_dir: Path, fig
     trigger_frames = []
     groups = ['DV_energy_only', 'Voltage_time_only', 'Voltage_time_freq', 'Voltage_current', 'Voltage_current_unbalance_sequence', 'Impedance_added', 'All_features']
     for group_name in groups:
-        flat = evaluate_models_for_group(by_case_wide, group_name, selected_models=['LogisticRegression', 'RandomForest'])
-        hier = evaluate_hierarchical_for_group(by_case_wide, group_name, event_models=['RandomForest'], binary_trigger_models=['RandomForest'])
+        flat = evaluate_models_for_group(by_case_wide, group_name, selected_models=['RandomForest'])
+        hier = evaluate_hierarchical_for_group(by_case_wide, group_name, event_models=['RandomForest'], binary_trigger_models=[])
         metrics_frames.append(flat.metrics)
         metrics_frames.append(hier.metrics)
         pred_frames.append(flat.predictions)

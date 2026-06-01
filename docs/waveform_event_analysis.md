@@ -271,3 +271,15 @@ Current interpretation:
 - the Normal raw waveforms remain low-trigger / near-steady-state;
 - the current issue is driven less by Normal raw behavior itself and more by the fact that many `SLG_Fault` cases appear indistinguishable from `Normal` under the present raw dataset / feature tables;
 - therefore the current results must be read as a **pipeline + dataset integrity diagnostic**, not as a final event-classification conclusion.
+
+## 16. Direct SLG regeneration update (R2025b)
+
+The previous `SLG_Fault_Bus*.xlsx` dataset was archived after diagnostics showed that `Normal` and `SLG_Fault` shared the same feature signature. A new direct-parameter MATLAB R2025b automation path was then used to regenerate `SLG_Fault_Bus01.csv` ~ `SLG_Fault_Bus30.csv`.
+
+Key outcome:
+- the old `Normal == SLG` corruption problem is resolved;
+- the direct smoke tests show clear AG-fault waveforms and strong event-trigger features;
+- but the current classifier now swaps `SLG_Fault` and `ThreePhase_Fault`, so the research bottleneck has moved from **data corruption** to **fault subtype separability**.
+
+Important framing:
+- these regenerated results should still be treated as **diagnostic / iterative research outputs**, not a final classification claim.

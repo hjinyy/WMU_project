@@ -65,3 +65,15 @@ The repository does **not** track:
 - local Windows-path scratch outputs.
 
 Only code, docs, and compact summary reports/figures are kept in git.
+
+## SLG dataset regeneration note (2026-06-01)
+
+- The original tracked SLG raw files were archived under `archive_bad_slg_*` after they were found to be effectively indistinguishable from `Normal`.
+- A direct exact-parameter MATLAB R2025b path regenerated `SLG_Fault_Bus01.csv` ~ `SLG_Fault_Bus30.csv`.
+- The rebuilt raw dataset now returns to `83` event files:
+  - `Normal = 3`
+  - `LoadSwitch = 20`
+  - `ThreePhase_Fault = 30`
+  - `SLG_Fault = 30`
+- The regenerated SLG data no longer collides with the Normal feature hash, but the current Python classifier still swaps `SLG_Fault` and `ThreePhase_Fault` almost completely.
+- Therefore the current dataset should be considered repaired enough for continued diagnostics, but not yet sufficient for a final SLG-vs-ThreePhase classification claim.

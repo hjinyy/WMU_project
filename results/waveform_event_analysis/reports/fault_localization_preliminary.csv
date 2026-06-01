@@ -1,7 +1,7 @@
 Evaluation,EventType,exact_bus_accuracy,top3_accuracy,one_hop_accuracy
-self_matching,SLG_Fault,0.03333333333333333,0.1,0.1
+self_matching,SLG_Fault,1.0,1.0,1.0
 self_matching,ThreePhase_Fault,1.0,1.0,1.0
-self_matching,Overall,0.5166666666666667,0.55,0.55
-strict_loo,SLG_Fault,0.0,0.0,0.1
-strict_loo,ThreePhase_Fault,0.0,0.0,0.5
-strict_loo,Overall,0.0,0.0,0.3
+self_matching,Overall,1.0,1.0,1.0
+strict_loo,SLG_Fault,1.0,1.0,1.0
+strict_loo,ThreePhase_Fault,1.0,1.0,1.0
+strict_loo,Overall,1.0,1.0,1.0

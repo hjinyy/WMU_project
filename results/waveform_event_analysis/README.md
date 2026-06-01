@@ -125,3 +125,20 @@ Important framing:
 - check whether `SLG_Fault` cases are numerically separable from `Normal` in the current dataset;
 - compare the original flat classifier with a new hierarchical trigger-first classifier;
 - keep the emphasis on **feature separability and dataset limitations**, not on a final performance claim.
+
+## Direct SLG regeneration update
+
+The tracked results now reflect a regenerated direct-automation SLG dataset.
+
+What changed:
+- the previous bad SLG raw files were archived out of the active raw dataset;
+- a new direct exact-parameter MATLAB R2025b path regenerated `SLG_Fault_Bus01.csv` ~ `SLG_Fault_Bus30.csv`;
+- the raw dataset is back to `83` event files.
+
+What improved:
+- `Normal` and `SLG_Fault` no longer share the same feature signature.
+- direct smoke tests show clearly fault-like AG behavior on representative buses.
+
+What remains unsolved:
+- the current classifier still swaps `SLG_Fault` and `ThreePhase_Fault` almost perfectly.
+- so the present outputs should still be interpreted as a **feature/dataset diagnostic package**, not as a final event-classification benchmark.
