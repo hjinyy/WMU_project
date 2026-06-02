@@ -154,3 +154,8 @@ The repository excludes raw and large local artifacts such as:
 - `results/intermediate/`
 
 Raw xlsx/csv event files and large intermediate tables stay outside git. Compact summary CSVs and key figures under `results/waveform_event_analysis/` remain trackable.
+
+
+## IBR-like SSO scenario status
+
+An SPS-only IBR-like SSO inspection/scaffolding pass was added for MATLAB R2025b. The current model inspection confirms that the existing workflow can safely reset all fault/loadswitch events, but a validated **physical** 20–30 Hz SPS injection path has not yet been established without adding incompatible Simscape physical-port blocks. See `docs/waveform_ibr_sso_scenario.md`.
