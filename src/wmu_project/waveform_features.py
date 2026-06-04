@@ -83,7 +83,7 @@ def spectral_ratios(signal: np.ndarray, fs: float) -> dict[str, float]:
     x = np.asarray(signal, dtype=float)
     x = x[np.isfinite(x)]
     if x.size < 16:
-        return {"hf": 0.0, "e28": 0.0, "e72": 0.0, "res": 0.0}
+        return {"hf": 0.0, "e28": 0.0, "e72": 0.0, "res": 0.0, "sso_20_30": 0.0, "ssc_5_55": 0.0}
     x = detrend(x, type="constant")
     spectrum = np.fft.rfft(x)
     power = np.abs(spectrum) ** 2
@@ -91,15 +91,19 @@ def spectral_ratios(signal: np.ndarray, fs: float) -> dict[str, float]:
     total_mask = (freqs > 0) & (freqs <= min(fs / 2.0, 2000.0))
     total_power = np.sum(power[total_mask])
     if total_power <= 0:
-        return {"hf": 0.0, "e28": 0.0, "e72": 0.0, "res": 0.0}
+        return {"hf": 0.0, "e28": 0.0, "e72": 0.0, "res": 0.0, "sso_20_30": 0.0, "ssc_5_55": 0.0}
     hf = np.sum(power[(freqs >= 200.0) & (freqs <= min(2000.0, fs / 2.0))])
     e28 = np.sum(power[(freqs >= 23.0) & (freqs <= 33.0)])
     e72 = np.sum(power[(freqs >= 67.0) & (freqs <= 77.0)])
+    sso_20_30 = np.sum(power[(freqs >= 20.0) & (freqs <= 30.0)])
+    ssc_5_55 = np.sum(power[(freqs >= 5.0) & (freqs <= 55.0)])
     return {
         "hf": float(hf / total_power),
         "e28": float(e28 / total_power),
         "e72": float(e72 / total_power),
         "res": float((e28 + e72) / total_power),
+        "sso_20_30": float(sso_20_30 / total_power),
+        "ssc_5_55": float(ssc_5_55 / total_power),
     }
 
 
@@ -222,8 +226,12 @@ def compute_bus_features(df: pd.DataFrame, bus: int, t_event: float, fs: float, 
         features[f"dV_E28_ratio_{phase}"] = spec_v["e28"]
         features[f"dV_E72_ratio_{phase}"] = spec_v["e72"]
         features[f"dV_Res_ratio_{phase}"] = spec_v["res"]
+        features[f"dV_SSO20_30_ratio_{phase}"] = spec_v["sso_20_30"]
+        features[f"dV_SSC5_55_ratio_{phase}"] = spec_v["ssc_5_55"]
         features[f"dI_HF_ratio_{phase}"] = spec_i["hf"]
         features[f"dI_Res_ratio_{phase}"] = spec_i["res"]
+        features[f"dI_SSO20_30_ratio_{phase}"] = spec_i["sso_20_30"]
+        features[f"dI_SSC5_55_ratio_{phase}"] = spec_i["ssc_5_55"]
         features[f"liss_corr_abs_{phase}"] = corr
         features[f"liss_area_norm_{phase}"] = area
 

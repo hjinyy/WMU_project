@@ -51,3 +51,19 @@ Before the IBR-like SSO dataset can be built, one of the following must be imple
 3. or a small SPS-compatible injection subsystem designed specifically for 20–30 Hz oscillatory current/power injection.
 
 Until one of those is available, the extended IBR-like SSO raw dataset must remain blocked.
+
+## Updated IBR-background batch result (2026-06-03, MATLAB R2024a)
+
+A later modified model, `Thirtybussys_WMU_IBR.slx`, already contains an IBR-like SSO implementation based on five Three-Phase Dynamic Load blocks with external P/Q control. The new automation therefore does **not** add Simscape physical-port blocks, does **not** retune snubbers, and does **not** sweep parameters. It only verifies the existing modified model, copies it to a working `.slx`, configures required case parameters on the working copy, and exports the requested dataset.
+
+Verified IBR-like SSO settings in the working copy:
+
+- Five Three-Phase Dynamic Load family blocks
+- External P/Q control enabled
+- `NominalVoltage = [1 50]`
+- `ActiveReactivePowers = [0 0]`
+- `PositiveSequence = [1 0]`
+- `Tfilter = 1e-4`
+- MATLAB Function constants consistent with `f = 25 Hz`, `t1 = 0.02 s`, `t2 = 0.48 s`, `P0 = 0.1`, `Q0 = 0.05`, `dP = 0.05`, `dQ = 0.025`
+
+The resulting dataset is an **IBR SSO background dataset**, not a baseline dataset: every exported case includes the SSO background and at most one additional event.

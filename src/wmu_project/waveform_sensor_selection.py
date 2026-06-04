@@ -13,6 +13,9 @@ from sklearn.preprocessing import StandardScaler
 from .waveform_classification import aggregate_trigger_features, apply_rule_trigger, build_rule_thresholds
 from .waveform_utils import FAULT_EVENTS
 
+NORMAL_EVENTS = {'Normal', 'SSO_Normal'}
+LOAD_SWITCH_EVENTS = {'LoadSwitch', 'SSO_LoadSwitch'}
+
 RANDOM_SEED = 42
 ID_COLUMNS = {'CaseName', 'EventType', 'TargetBus', 'ObservedBus', 'EventTime', 'SamplingRateHz'}
 
@@ -78,10 +81,11 @@ def hierarchical_subset_predict(matrix: pd.DataFrame) -> tuple[np.ndarray, list[
         trigger_test = trigger_frame.loc[[test_idx]].reset_index(drop=True).iloc[0]
         thresholds = build_rule_thresholds(trigger_train, pd.Series(y_train))
         is_event, score, top_feature = apply_rule_trigger(trigger_test, thresholds)
+        normal_label = 'SSO_Normal' if 'SSO_Normal' in set(y) else 'Normal'
         if not is_event:
-            preds[test_idx] = 'Normal'
+            preds[test_idx] = normal_label
         else:
-            event_mask = train_mask & (y != 'Normal')
+            event_mask = train_mask & ~pd.Series(y).isin(NORMAL_EVENTS).to_numpy()
             preds[test_idx] = loo_nearest_neighbor_predict(x[event_mask], y[event_mask], x[[test_idx]])
         debug_rows.append({
             'CaseName': case_rows.loc[test_idx, 'CaseName'],
@@ -101,11 +105,13 @@ def evaluate_subset(by_bus: pd.DataFrame, buses: list[int]) -> tuple[dict[str, f
     y = matrix['EventType'].astype(str).to_numpy()
     macro_f1 = float(f1_score(y, pred, average='macro', zero_division=0))
     balanced_accuracy = float(balanced_accuracy_score(y, pred))
-    load_mask = y == 'LoadSwitch'
-    loadswitch_recall = float(np.mean(pred[load_mask] == 'LoadSwitch')) if load_mask.any() else np.nan
-    normal_mask = y == 'Normal'
-    normal_recall = float(np.mean(pred[normal_mask] == 'Normal')) if normal_mask.any() else np.nan
-    normal_far = float(np.mean(pred[normal_mask] != 'Normal')) if normal_mask.any() else np.nan
+    loadswitch_label = 'SSO_LoadSwitch' if 'SSO_LoadSwitch' in set(y) else 'LoadSwitch'
+    normal_label = 'SSO_Normal' if 'SSO_Normal' in set(y) else 'Normal'
+    load_mask = y == loadswitch_label
+    loadswitch_recall = float(np.mean(pred[load_mask] == loadswitch_label)) if load_mask.any() else np.nan
+    normal_mask = y == normal_label
+    normal_recall = float(np.mean(pred[normal_mask] == normal_label)) if normal_mask.any() else np.nan
+    normal_far = float(np.mean(pred[normal_mask] != normal_label)) if normal_mask.any() else np.nan
     truth_fault = np.isin(y, list(FAULT_EVENTS))
     pred_fault = np.isin(pred, list(FAULT_EVENTS))
     tp = int(np.sum(truth_fault & pred_fault))
@@ -120,7 +126,7 @@ def evaluate_subset(by_bus: pd.DataFrame, buses: list[int]) -> tuple[dict[str, f
         'Normal_recall': normal_recall,
     }
     trigger_series = pd.DataFrame(debug_rows)
-    normal_trigger_rate = float(np.mean(trigger_series.loc[trigger_series['TrueEventType'] == 'Normal', 'TriggerDecision'] == 'Event')) if (trigger_series['TrueEventType'] == 'Normal').any() else np.nan
+    normal_trigger_rate = float(np.mean(trigger_series.loc[trigger_series['TrueEventType'].isin(NORMAL_EVENTS), 'TriggerDecision'] == 'Event')) if trigger_series['TrueEventType'].isin(NORMAL_EVENTS).any() else np.nan
     debug = {
         'selected_buses': str(buses),
         'num_features': len([col for col in matrix.columns if col.startswith('Bus')]),

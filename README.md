@@ -141,6 +141,19 @@ Key additional outputs:
 - `results/waveform_event_analysis/figures/normal_waveform_sanity_check.png`
 - `results/waveform_event_analysis/figures/normal_vs_slg_core_feature_boxplot.png`
 
+
+## IBR-background WMU waveform dataset (2026-06-03)
+
+A new MATLAB R2024a automation path generates an 84-case modified IEEE 30-bus waveform dataset where IBR-like 25 Hz SSO is present as a background condition in every case. The raw CSV files are stored outside git at `C:\Users\user\Documents\MATLAB\WMU_final\WMU_batch_raw_ibr_background`; compact analysis reports and key figures are tracked under `results/waveform_ibr_background_analysis/`.
+
+Key entry points:
+- MATLAB batch automation: `scripts/matlab/run_wmu_ibr_background_batch.m`
+- Python analysis: `scripts/run_waveform_event_analysis.py --scenario ibr-background`
+- Scenario notes: `docs/waveform_ibr_sso_scenario.md`
+- Dataset notes: `docs/waveform_dataset_notes.md`
+
+The source model is copied to `Thirtybussys_WMU_IBR_batch.slx` before execution and is not saved directly. Raw CSV, analysis output folders, and `.slx` files remain excluded from git.
+
 ## Git hygiene
 
 The repository excludes raw and large local artifacts such as:

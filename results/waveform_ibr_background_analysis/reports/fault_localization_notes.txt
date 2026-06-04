@@ -1,0 +1,1 @@
+Self-matching is a sanity-check separability score because each case can match itself. Strict LOO excludes the current case and is the more relevant preliminary localization result. Because each bus currently has only one SLG and one three-phase case, strict LOO remains a low-sample fingerprint test rather than a train/test localization benchmark.

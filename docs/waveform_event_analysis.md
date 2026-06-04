@@ -305,3 +305,32 @@ New artifacts from this pass:
 Interpretation note:
 - event-type recognition should emphasize phase asymmetry, sequence content, and event-type summary descriptors;
 - localization can still benefit from spatially explicit wide fingerprints.
+
+## IBR-background event analysis update (2026-06-03)
+
+The Python waveform pipeline now recognizes the IBR-background event labels:
+
+- `SSO_Normal`
+- `SSO_LoadSwitch`
+- `SSO_SLG_Fault`
+- `SSO_ThreePhase_Fault`
+
+For these labels the pipeline uses event timing consistent with the MATLAB batch:
+
+- `SSO_LoadSwitch`: `t_event = 0.1 s`
+- `SSO_SLG_Fault` / `SSO_ThreePhase_Fault`: `t_event = 0.3 s`
+- `SSO_Normal`: SSO-background diagnostic window starts at `0.02 s`
+
+The feature set now includes explicit 20--30 Hz SSO-band and 5--55 Hz SSC-style spectral ratios in addition to the existing voltage/current, sag, unbalance, sequence, and apparent-impedance features.
+
+Run command used for the 2026-06-03 IBR-background analysis:
+
+```bash
+.venv/bin/python scripts/run_waveform_event_analysis.py \
+  --input-dir /mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_raw_ibr_background \
+  --output-dir /mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background \
+  --f0 50 \
+  --scenario ibr-background
+```
+
+Compact tracked results are under `results/waveform_ibr_background_analysis/`.

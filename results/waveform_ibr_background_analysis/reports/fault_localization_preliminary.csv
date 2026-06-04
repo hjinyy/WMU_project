@@ -1,0 +1,7 @@
+Evaluation,EventType,exact_bus_accuracy,top3_accuracy,one_hop_accuracy
+self_matching,SSO_SLG_Fault,1.0,1.0,1.0
+self_matching,SSO_ThreePhase_Fault,1.0,1.0,1.0
+self_matching,Overall,1.0,1.0,1.0
+strict_loo,SSO_SLG_Fault,0.0,0.0,0.6
+strict_loo,SSO_ThreePhase_Fault,0.0,0.0,0.3333333333333333
+strict_loo,Overall,0.0,0.0,0.4666666666666667

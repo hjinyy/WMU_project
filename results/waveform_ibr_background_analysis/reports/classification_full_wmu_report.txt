@@ -1,0 +1,30 @@
+Waveform event classification report
+
+## Best flat 4-class result
+- Strategy=flat | TriggerMethod=none | TriggerModel=none | EventModel=RandomForest
+- macro-F1=1.0000 | balanced_accuracy=1.0000
+- Normal_recall=1.0000 | LoadSwitch_recall=1.0000 | Fault_precision=1.0000
+
+## Best hierarchical result
+- Strategy=hierarchical | TriggerMethod=rule_based | TriggerModel=RuleTrigger | EventModel=RandomForest
+- macro-F1=1.0000 | balanced_accuracy=1.0000
+- Normal_recall=1.0000 | LoadSwitch_recall=1.0000 | Fault_precision=1.0000
+
+## Caveats
+- Normal class has only 3 samples, so Normal recall is highly unstable.
+- Hierarchical triggering is intended to separate no-event vs event first; it does not repair mislabeled or corrupted raw event files.
+
+## LoadSwitch -> Fault misclassifications (best flat)
+- none
+
+## Metrics tables
+
+[Flat]
+FeatureGroup Strategy TriggerMethod TriggerModel         EventModel              Model Validation  accuracy  macro_f1  balanced_accuracy Notes  precision_SSO_Normal  recall_SSO_Normal  f1_SSO_Normal  support_SSO_Normal  precision_SSO_LoadSwitch  recall_SSO_LoadSwitch  f1_SSO_LoadSwitch  support_SSO_LoadSwitch  precision_SSO_SLG_Fault  recall_SSO_SLG_Fault  f1_SSO_SLG_Fault  support_SSO_SLG_Fault  precision_SSO_ThreePhase_Fault  recall_SSO_ThreePhase_Fault  f1_SSO_ThreePhase_Fault  support_SSO_ThreePhase_Fault  Fault_precision  Normal_false_alarm_rate  Normal_recall  LoadSwitch_recall  LoadSwitch_to_Fault_count
+All_features     flat          none         none       RandomForest       RandomForest        LOO  1.000000  1.000000              1.000                         1.0                1.0            1.0                   3                  1.000000                    1.0           1.000000                      21                 1.000000                   1.0            1.0000                     30                             1.0                          1.0                 1.000000                            30              1.0                      0.0            1.0                1.0                          0
+All_features     flat          none         none LogisticRegression LogisticRegression        LOO  0.892857  0.913662              0.925                         1.0                1.0            1.0                   3                  0.807692                    1.0           0.893617                      21                 0.882353                   1.0            0.9375                     30                             1.0                          0.7                 0.823529                            30              1.0                      0.0            1.0                1.0                          0
+
+[Hierarchical]
+FeatureGroup     Strategy TriggerMethod TriggerModel   EventModel        Model Validation  accuracy  macro_f1  balanced_accuracy Notes  precision_SSO_Normal  recall_SSO_Normal  f1_SSO_Normal  support_SSO_Normal  precision_SSO_LoadSwitch  recall_SSO_LoadSwitch  f1_SSO_LoadSwitch  support_SSO_LoadSwitch  precision_SSO_SLG_Fault  recall_SSO_SLG_Fault  f1_SSO_SLG_Fault  support_SSO_SLG_Fault  precision_SSO_ThreePhase_Fault  recall_SSO_ThreePhase_Fault  f1_SSO_ThreePhase_Fault  support_SSO_ThreePhase_Fault  Fault_precision  Normal_false_alarm_rate  Normal_recall  LoadSwitch_recall  LoadSwitch_to_Fault_count
+All_features hierarchical    rule_based  RuleTrigger RandomForest RandomForest        LOO       1.0       1.0                1.0                         1.0                1.0            1.0                   3                       1.0                    1.0                1.0                      21                      1.0                   1.0               1.0                     30                             1.0                          1.0                      1.0                            30              1.0                      0.0            1.0                1.0                          0
+All_features hierarchical     binary_ml RandomForest RandomForest RandomForest        LOO       1.0       1.0                1.0                         1.0                1.0            1.0                   3                       1.0                    1.0                1.0                      21                      1.0                   1.0               1.0                     30                             1.0                          1.0                      1.0                            30              1.0                      0.0            1.0                1.0                          0

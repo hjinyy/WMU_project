@@ -10,11 +10,20 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
-EVENT_CLASS_ORDER = ["Normal", "LoadSwitch", "SLG_Fault", "ThreePhase_Fault"]
-FAULT_EVENTS = {"SLG_Fault", "ThreePhase_Fault"}
-LOAD_SWITCH_ALIASES = {"LoadSwitch", "LoadSwitch15pct"}
+EVENT_CLASS_ORDER = [
+    "Normal",
+    "LoadSwitch",
+    "SLG_Fault",
+    "ThreePhase_Fault",
+    "SSO_Normal",
+    "SSO_LoadSwitch",
+    "SSO_SLG_Fault",
+    "SSO_ThreePhase_Fault",
+]
+FAULT_EVENTS = {"SLG_Fault", "ThreePhase_Fault", "SSO_SLG_Fault", "SSO_ThreePhase_Fault"}
+LOAD_SWITCH_ALIASES = {"LoadSwitch", "LoadSwitch15pct", "SSO_LoadSwitch"}
 FILENAME_RE = re.compile(
-    r"^(?P<event>Normal|LoadSwitch(?:15pct)?|SLG_Fault|ThreePhase_Fault)"
+    r"^(?P<event>SSO_Normal|SSO_LoadSwitch|SSO_SLG_Fault|SSO_ThreePhase_Fault|Normal|LoadSwitch(?:15pct)?|SLG_Fault|ThreePhase_Fault)"
     r"(?:_(?:Bus(?P<bus>\d+)|Case(?P<case>\d+)))?\.(?P<ext>xlsx|csv)$",
     re.IGNORECASE,
 )
@@ -37,6 +46,12 @@ class CaseMetadata:
 
     @property
     def event_time(self) -> float:
+        if self.event_type == "SSO_LoadSwitch":
+            return 0.1
+        if self.event_type in {"SSO_SLG_Fault", "SSO_ThreePhase_Fault"}:
+            return 0.3
+        if self.event_type == "SSO_Normal":
+            return 0.02
         if self.event_type == "LoadSwitch":
             return 0.2
         return 0.5
@@ -75,7 +90,7 @@ def parse_case_filename(path: str | Path) -> CaseMetadata:
     if not match:
         raise WaveformDataError(f"Unsupported waveform filename: {path.name}")
     event_raw = match.group("event")
-    event_type = "LoadSwitch" if event_raw in LOAD_SWITCH_ALIASES else event_raw
+    event_type = "LoadSwitch" if event_raw == "LoadSwitch15pct" else event_raw
     bus_text = match.group("bus")
     variant = event_raw if event_raw != event_type else None
     target_bus = float("nan") if bus_text is None else float(int(bus_text))

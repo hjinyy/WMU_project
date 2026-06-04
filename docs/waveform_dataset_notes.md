@@ -77,3 +77,45 @@ Only code, docs, and compact summary reports/figures are kept in git.
   - `SLG_Fault = 30`
 - The regenerated SLG data no longer collides with the Normal feature hash, but the current Python classifier still swaps `SLG_Fault` and `ThreePhase_Fault` almost completely.
 - Therefore the current dataset should be considered repaired enough for continued diagnostics, but not yet sufficient for a final SLG-vs-ThreePhase classification claim.
+
+## IBR-background dataset generation note (2026-06-03)
+
+A new modified IEEE 30-bus dataset was generated from the working-copy model:
+
+- Source model: `C:\Users\user\Documents\MATLAB\WMU_final\Thirtybussys_WMU_IBR.slx`
+- Working copy: `C:\Users\user\Documents\MATLAB\WMU_final\Thirtybussys_WMU_IBR_batch.slx`
+- Raw output: `C:\Users\user\Documents\MATLAB\WMU_final\WMU_batch_raw_ibr_background`
+- Analysis output: `C:\Users\user\Documents\MATLAB\WMU_final\WMU_batch_data_ibr_background`
+
+The source model was copied before execution and was not saved. The working model was verified under MATLAB R2024a and configured with `StopTime = 0.5`.
+
+New event-file patterns:
+
+- `SSO_Normal_Case01.csv` ... `SSO_Normal_Case03.csv`
+- `SSO_LoadSwitch_Bus02.csv` ... `SSO_LoadSwitch_Bus30.csv` for the 21 configured load buses
+- `SSO_SLG_Fault_Bus01.csv` ... `SSO_SLG_Fault_Bus30.csv`
+- `SSO_ThreePhase_Fault_Bus01.csv` ... `SSO_ThreePhase_Fault_Bus30.csv`
+
+Dataset composition:
+
+- `SSO_Normal = 3`
+- `SSO_LoadSwitch = 21`
+- `SSO_SLG_Fault = 30`
+- `SSO_ThreePhase_Fault = 30`
+- Total CSV files: `84`
+
+All cases include the IBR-like SSO background. LoadSwitch cases additionally enable exactly one `LoadSwitch<bus>` breaker at `0.1 s`; SLG/three-phase fault cases additionally enable exactly one `SLG<bus>` fault from `0.3 s` to `0.36 s`.
+
+Before LoadSwitch cases, `LoadAdd<bus>` blocks were set from existing `Load<bus>` values:
+
+- `ActivePower_LoadAdd = 0.15 * ActivePower_Load`
+- `InductivePower_LoadAdd = 0.15 * InductivePower_Load`
+- `CapacitivePower_LoadAdd = 0`
+
+Integrity reports are stored outside git in the raw output directory:
+
+- `model_integrity_report.csv/.txt`
+- `loadadd_15pct_setting_report.csv`
+- `sanity_check_summary.csv`
+- `dataset_metadata.csv`
+- `dataset_integrity_report.csv/.txt`

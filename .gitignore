@@ -13,3 +13,7 @@ outputs/
 results/raw/
 results/intermediate/
 *.egg-info/
+WMU_batch_raw_ibr_background/
+WMU_batch_data_ibr_background/
+WMU_batch_raw_ibr_sso/
+WMU_batch_data_ibr_sso/

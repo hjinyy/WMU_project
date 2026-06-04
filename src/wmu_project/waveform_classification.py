@@ -22,7 +22,9 @@ from .waveform_features import select_feature_columns_by_group
 from .waveform_utils import EVENT_CLASS_ORDER, FAULT_EVENTS
 
 RANDOM_SEED = 42
-EVENT_LABELS = [label for label in EVENT_CLASS_ORDER if label != 'Normal']
+NORMAL_EVENTS = {'Normal', 'SSO_Normal'}
+LOAD_SWITCH_EVENTS = {'LoadSwitch', 'SSO_LoadSwitch'}
+EVENT_LABELS = [label for label in EVENT_CLASS_ORDER if label not in NORMAL_EVENTS]
 TRIGGER_CANDIDATES = ('max_dV_energy', 'max_dI_energy', 'max_sag', 'max_I_rms_jump', 'max_Z_drop_ratio')
 
 
@@ -48,7 +50,7 @@ def build_models() -> dict[str, Pipeline]:
         ]),
         'RandomForest': Pipeline([
             ('prep', tree_numeric),
-            ('model', RandomForestClassifier(n_estimators=400, random_state=RANDOM_SEED, class_weight='balanced', n_jobs=-1)),
+            ('model', RandomForestClassifier(n_estimators=120, random_state=RANDOM_SEED, class_weight='balanced', n_jobs=-1)),
         ]),
         'LinearSVC': Pipeline([
             ('prep', numeric),
@@ -70,7 +72,7 @@ def build_binary_models() -> dict[str, Pipeline]:
         ]),
         'RandomForest': Pipeline([
             ('prep', tree_numeric),
-            ('model', RandomForestClassifier(n_estimators=400, random_state=RANDOM_SEED, class_weight='balanced', n_jobs=-1)),
+            ('model', RandomForestClassifier(n_estimators=120, random_state=RANDOM_SEED, class_weight='balanced', n_jobs=-1)),
         ]),
         'LinearSVC': Pipeline([
             ('prep', numeric),
@@ -104,6 +106,14 @@ def stratified_predict(model: Pipeline, x: pd.DataFrame, y: np.ndarray) -> tuple
     return preds, n_splits
 
 
+def active_normal_label(labels: list[str]) -> str:
+    return 'SSO_Normal' if 'SSO_Normal' in labels else 'Normal'
+
+
+def active_loadswitch_label(labels: list[str]) -> str:
+    return 'SSO_LoadSwitch' if 'SSO_LoadSwitch' in labels else 'LoadSwitch'
+
+
 def compute_metrics(truth: np.ndarray, pred: np.ndarray, labels: list[str], model_name: str, feature_group: str, validation: str, strategy: str = 'flat', trigger_method: str = 'none', trigger_model: str = 'none', notes: str = '') -> dict[str, object]:
     per_class = precision_recall_fscore_support(truth, pred, labels=labels, zero_division=0)
     precision, recall, f1, support = per_class
@@ -130,11 +140,13 @@ def compute_metrics(truth: np.ndarray, pred: np.ndarray, labels: list[str], mode
     tp = int(np.sum(truth_fault & pred_fault))
     fp = int(np.sum(~truth_fault & pred_fault))
     row['Fault_precision'] = tp / (tp + fp) if (tp + fp) else 0.0
-    normal_mask = truth == 'Normal'
-    row['Normal_false_alarm_rate'] = float(np.mean(pred[normal_mask] != 'Normal')) if normal_mask.any() else np.nan
-    row['Normal_recall'] = row.get('recall_Normal', np.nan)
-    row['LoadSwitch_recall'] = row.get('recall_LoadSwitch', np.nan)
-    row['LoadSwitch_to_Fault_count'] = int(np.sum((truth == 'LoadSwitch') & np.isin(pred, list(FAULT_EVENTS))))
+    normal_label = active_normal_label(labels)
+    loadswitch_label = active_loadswitch_label(labels)
+    normal_mask = truth == normal_label
+    row['Normal_false_alarm_rate'] = float(np.mean(pred[normal_mask] != normal_label)) if normal_mask.any() else np.nan
+    row['Normal_recall'] = row.get(f'recall_{normal_label}', np.nan)
+    row['LoadSwitch_recall'] = row.get(f'recall_{loadswitch_label}', np.nan)
+    row['LoadSwitch_to_Fault_count'] = int(np.sum((truth == loadswitch_label) & np.isin(pred, list(FAULT_EVENTS))))
     return row
 
 
@@ -170,7 +182,7 @@ def aggregate_trigger_features(frame: pd.DataFrame, feature_columns: list[str] |
 
 def build_rule_thresholds(train_trigger: pd.DataFrame, train_labels: pd.Series, margin: float = 1.10) -> dict[str, float]:
     thresholds: dict[str, float] = {}
-    normal_rows = train_trigger.loc[train_labels == 'Normal']
+    normal_rows = train_trigger.loc[train_labels.isin(NORMAL_EVENTS)]
     for feature in train_trigger.columns:
         series = pd.to_numeric(normal_rows[feature], errors='coerce').dropna()
         if series.empty:
@@ -205,6 +217,7 @@ def hierarchical_loo_predict(by_case_wide: pd.DataFrame, feature_columns: list[s
     feature_x = by_case_wide[feature_columns].copy()
     labels = by_case_wide['EventType'].astype(str).reset_index(drop=True)
     trigger_x = aggregate_trigger_features(by_case_wide, feature_columns).reset_index(drop=True)
+    normal_label = active_normal_label([label for label in EVENT_CLASS_ORDER if label in set(labels)])
 
     loo = LeaveOneOut()
     preds = np.empty(labels.shape[0], dtype=object)
@@ -226,7 +239,7 @@ def hierarchical_loo_predict(by_case_wide: pd.DataFrame, feature_columns: list[s
         elif trigger_method == 'binary_ml':
             trigger_model = trigger_model_name or 'LogisticRegression'
             binary_model = clone(binary_models[trigger_model])
-            y_train_binary = np.where(y_train == 'Normal', 'Normal', 'Event')
+            y_train_binary = np.where(y_train.isin(NORMAL_EVENTS), 'Normal', 'Event')
             binary_model.fit(train_trigger, y_train_binary)
             pred_binary = binary_model.predict(trigger_x.iloc[test_idx])[0]
             is_event = pred_binary == 'Event'
@@ -237,11 +250,11 @@ def hierarchical_loo_predict(by_case_wide: pd.DataFrame, feature_columns: list[s
             raise KeyError(f'Unknown trigger method: {trigger_method}')
 
         if not is_event:
-            preds[test_i] = 'Normal'
+            preds[test_i] = normal_label
             trigger_rows.append({
                 'CaseName': by_case_wide.iloc[test_i]['CaseName'],
                 'TrueEventType': labels.iloc[test_i],
-                'PredictedEventType': 'Normal',
+                'PredictedEventType': normal_label,
                 'TriggerMethod': trigger_method,
                 'TriggerModel': trigger_model,
                 'EventModel': event_model_name,
@@ -252,7 +265,7 @@ def hierarchical_loo_predict(by_case_wide: pd.DataFrame, feature_columns: list[s
             })
             continue
 
-        event_mask = y_train != 'Normal'
+        event_mask = ~y_train.isin(NORMAL_EVENTS)
         x_train_event = x_train.loc[event_mask]
         y_train_event = y_train.loc[event_mask]
         fitted_event = clone(event_model)
@@ -298,7 +311,7 @@ def evaluate_models_for_group(by_case_wide: pd.DataFrame, feature_group: str, mo
         pred_df['FeatureGroup'] = feature_group
         pred_df['PredictedEventType'] = pred
         pred_df['IsCorrect'] = pred_df['EventType'] == pred_df['PredictedEventType']
-        pred_df['LoadSwitchToFault'] = (pred_df['EventType'] == 'LoadSwitch') & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
+        pred_df['LoadSwitchToFault'] = pred_df['EventType'].isin(LOAD_SWITCH_EVENTS) & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
         pred_rows.append(pred_df)
 
 
@@ -332,7 +345,7 @@ def evaluate_hierarchical_for_group(by_case_wide: pd.DataFrame, feature_group: s
         pred_df['FeatureGroup'] = feature_group
         pred_df['PredictedEventType'] = pred
         pred_df['IsCorrect'] = pred_df['EventType'] == pred_df['PredictedEventType']
-        pred_df['LoadSwitchToFault'] = (pred_df['EventType'] == 'LoadSwitch') & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
+        pred_df['LoadSwitchToFault'] = pred_df['EventType'].isin(LOAD_SWITCH_EVENTS) & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
         pred_rows.append(pred_df)
         trigger_rows.append(trigger_df.assign(FeatureGroup=feature_group, Strategy='hierarchical'))
 
@@ -349,7 +362,7 @@ def evaluate_hierarchical_for_group(by_case_wide: pd.DataFrame, feature_group: s
             pred_df['FeatureGroup'] = feature_group
             pred_df['PredictedEventType'] = pred
             pred_df['IsCorrect'] = pred_df['EventType'] == pred_df['PredictedEventType']
-            pred_df['LoadSwitchToFault'] = (pred_df['EventType'] == 'LoadSwitch') & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
+            pred_df['LoadSwitchToFault'] = pred_df['EventType'].isin(LOAD_SWITCH_EVENTS) & pred_df['PredictedEventType'].isin(FAULT_EVENTS)
             pred_rows.append(pred_df)
             trigger_rows.append(trigger_df.assign(FeatureGroup=feature_group, Strategy='hierarchical'))
 

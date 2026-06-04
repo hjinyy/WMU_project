@@ -1,0 +1,169 @@
+CaseName,TrueEventType,PredictedEventType,TriggerMethod,TriggerModel,EventModel,TriggerDecision,TriggerScore,TriggerTopFeature,TriggerThresholds,FeatureGroup,Strategy
+SSO_LoadSwitch_Bus02,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,6227413738.363219,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus03,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5422513726.841993,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus04,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5576814639.974393,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus05,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,10257749706.52682,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus07,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,11055179313.118502,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus08,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,11157059965.018368,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus10,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5589210193.360783,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus12,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,6996736686.411876,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus14,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5454714916.022896,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus15,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5604280236.726877,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus16,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5400427142.981834,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus17,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,6425384922.940203,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus18,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5414094587.537055,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus19,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5753369556.208976,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus20,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5384563277.511245,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus21,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,7989241377.205803,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus23,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5463256023.63551,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus24,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,6052377985.878543,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus26,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,6614872223.139723,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus29,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,5461295582.05144,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus30,SSO_LoadSwitch,SSO_LoadSwitch,rule_based,RuleTrigger,RandomForest,Event,9050566264.525051,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_Normal_Case01,SSO_Normal,SSO_Normal,rule_based,RuleTrigger,RandomForest,Normal,0.9082652134423251,max_Z_drop_ratio,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_Normal_Case02,SSO_Normal,SSO_Normal,rule_based,RuleTrigger,RandomForest,Normal,0.9082652134423251,max_Z_drop_ratio,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_Normal_Case03,SSO_Normal,SSO_Normal,rule_based,RuleTrigger,RandomForest,Normal,0.9082652134423251,max_Z_drop_ratio,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus01,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,844385552726.8818,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus02,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,828051940279.157,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus03,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,893019427468.6403,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus04,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,874829392755.9021,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus05,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,869441825931.2787,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus06,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,880516663234.517,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus07,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,899041655202.3867,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus08,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,904070291804.7885,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus09,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,921846291961.445,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus10,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,933162269869.5083,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus11,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,916419795658.6367,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus12,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,935816156780.5715,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus13,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,917326375560.4111,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus14,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,960628260219.1104,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus15,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,931224822475.15,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus16,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,971989306226.0126,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus17,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,956598994448.9889,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus18,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,960904331401.6858,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus19,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,961024763338.0918,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus20,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,960924480940.3052,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus21,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,945566281728.0369,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus22,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,945879604084.687,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus23,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,959588126505.8986,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus24,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,956449139880.2224,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus25,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,993281031340.3677,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus26,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,986536415801.3003,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus27,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,971326395113.584,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus28,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,912711171679.5334,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus29,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,984220082402.3119,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_SLG_Fault_Bus30,SSO_SLG_Fault,SSO_SLG_Fault,rule_based,RuleTrigger,RandomForest,Event,985293339539.2783,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus01,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,986013398052.9878,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus02,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,991676376407.0305,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus03,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,990531874884.4634,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus04,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,989033254678.8177,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus05,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,989516775878.5071,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus06,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,969285099302.7223,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus07,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,990952691478.6893,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus08,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,991439103984.1154,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus09,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,986600942461.5912,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus10,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,995195378453.2272,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus11,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,991376041533.9336,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus12,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,996757580585.3085,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus13,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,992269307038.6626,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus14,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,998446606357.401,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus15,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,995411385907.4227,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus16,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,998588764023.3872,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus17,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,996997773052.0311,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus18,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,996849083687.9268,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus19,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,997897099955.6072,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus20,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,997584031404.0703,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus21,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,994946881343.6525,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus22,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,994973070686.5564,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus23,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,996375049965.625,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus24,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,996119814030.0172,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus25,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,997489239258.4729,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus26,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,998875154534.114,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus27,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,997277064683.5748,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus28,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,992051727934.8428,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus29,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,998582652184.8517,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus30,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,rule_based,RuleTrigger,RandomForest,Event,998691558257.0925,max_sag,max_dV_energy=0.0171; max_dI_energy=0.04402; max_sag=1e-12; max_Z_drop_ratio=0.2271; max_I_rms_jump=0.0869,All_features,hierarchical
+SSO_LoadSwitch_Bus02,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus03,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus04,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus05,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus07,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus08,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus10,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus12,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus14,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus15,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus16,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus17,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus18,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus19,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus20,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus21,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus23,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus24,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus26,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus29,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_LoadSwitch_Bus30,SSO_LoadSwitch,SSO_LoadSwitch,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_Normal_Case01,SSO_Normal,SSO_Normal,binary_ml,RandomForest,RandomForest,Normal,,ml_trigger,,All_features,hierarchical
+SSO_Normal_Case02,SSO_Normal,SSO_Normal,binary_ml,RandomForest,RandomForest,Normal,,ml_trigger,,All_features,hierarchical
+SSO_Normal_Case03,SSO_Normal,SSO_Normal,binary_ml,RandomForest,RandomForest,Normal,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus01,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus02,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus03,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus04,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus05,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus06,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus07,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus08,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus09,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus10,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus11,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus12,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus13,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus14,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus15,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus16,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus17,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus18,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus19,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus20,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus21,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus22,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus23,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus24,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus25,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus26,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus27,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus28,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus29,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_SLG_Fault_Bus30,SSO_SLG_Fault,SSO_SLG_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus01,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus02,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus03,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus04,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus05,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus06,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus07,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus08,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus09,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus10,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus11,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus12,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus13,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus14,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus15,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus16,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus17,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus18,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus19,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus20,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus21,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus22,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus23,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus24,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus25,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus26,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus27,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus28,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus29,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
+SSO_ThreePhase_Fault_Bus30,SSO_ThreePhase_Fault,SSO_ThreePhase_Fault,binary_ml,RandomForest,RandomForest,Event,,ml_trigger,,All_features,hierarchical
