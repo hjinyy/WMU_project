@@ -58,14 +58,14 @@ Output directory:
 - WSL/Linux: `/mnt/c/Users/user/Documents/MATLAB/WMU_test/WMU_batch_data`
 
 Current raw event inventory:
-- `83` total event files
+- `84` total event files
 - `30` `SLG_Fault_Bus*.xlsx`
 - `30` `ThreePhase_Fault_Bus*.xlsx`
 - `3` `Normal_Case*.xlsx`
-- `20` `LoadSwitch_Bus*.csv`
+- `21` `LoadSwitch_Bus*.csv`
 
 The LoadSwitch cases were regenerated as **15% abrupt load increases** only at buses with existing Pd or Qd:
-`2, 3, 4, 7, 8, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 29, 30`
+`2, 3, 4, 5, 7, 8, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 29, 30`
 
 The pipeline now supports mixed input formats:
 - xlsx for SLG / ThreePhase / Normal
@@ -115,10 +115,10 @@ Tracked repo summaries:
 
 ### Current run snapshot
 
-From the 2026-05-20 corrected 83-file dataset run:
-- input raw event files: `83`
-- class counts: `Normal=3`, `LoadSwitch=20`, `SLG_Fault=30`, `ThreePhase_Fault=30`
-- data-quality status: `OK=83`, `WARNING=0`, `FAILED=0`
+From the 2026-05-20 corrected 84-file dataset run:
+- input raw event files: `84`
+- class counts: `Normal=3`, `LoadSwitch=21`, `SLG_Fault=30`, `ThreePhase_Fault=30`
+- data-quality status: `OK=84`, `WARNING=0`, `FAILED=0`
 - best full-WMU LOO classifier: `RandomForest`
 - best full-WMU macro-F1: `0.7381`
 - best balanced accuracy: `0.7500`
