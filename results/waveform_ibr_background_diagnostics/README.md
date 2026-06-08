@@ -97,3 +97,55 @@ Event classification succeeds under the current controlled conditions. The featu
 - Strong feature correlation and many features relative to 84 cases.
 
 Next experiments should vary SSO magnitude/frequency/damping, fault resistance and inception angle, load-switch size, operating point, and measurement noise. Repeated cases per bus are required for a defensible exact-bus localization benchmark.
+
+## 9. Figure organization
+
+The original generated files remain unchanged under `figures/`. Curated copies
+are organized into:
+
+- `figures_keep_main/`: figures recommended for the main text.
+- `figures_appendix/`: supporting figures recommended for an appendix or supplement.
+- `figures_deprecated/`: redundant or lower-priority figures retained for traceability but not recommended for publication.
+
+Every copy operation, source/destination path, byte count, and SHA-256 checksum
+is recorded in `reports/figure_organization_log.csv`.
+
+### Main-text figures
+
+| Figure | Recommended use |
+| --- | --- |
+| `feature_distribution_dv_energy.png` | Explain voltage-disturbance energy separation across classes. |
+| `feature_distribution_di_energy.png` | Explain current-disturbance separation, especially switching versus faults. |
+| `feature_distribution_sso_band_energy.png` | Show the role and overlap of SSO/spectral features. |
+| `feature_distribution_sequence_unbalance.png` | Show the strongest physical separation between SLG and three-phase faults. |
+| `sensor_count_macro_f1_extended.png` | Present the k=1 saturation result with alternative sensor-count baselines. |
+| `localization_onehop_twohop_summary.png` | Summarize exact, neighbor, two-hop, and zone localization performance. |
+| `localization_distance_cdf.png` | Show the cumulative graph-distance localization error. |
+| `localization_zone_confusion_matrix.png` | Present the more defensible zone-level localization result. |
+
+### Appendix figures
+
+| Figure | Supporting role |
+| --- | --- |
+| `single_wmu_macro_f1_by_bus.png` | Detailed bus-by-bus single-WMU performance. |
+| `single_wmu_class_recall_heatmap.png` | Bus-specific class-recall detail. |
+| `localization_distance_by_fault_type.png` | SLG versus three-phase localization comparison. |
+| `localization_distance_histogram.png` | Alternative view of graph-distance errors. |
+| `localization_normalized_confusion_matrix.png` | Full exact-bus confusion structure. |
+| `localization_predicted_bus_frequency.png` | Prediction concentration and bus-frequency bias. |
+| `feature_importance_randomforest_top20.png` | Full-WMU impurity importance detail. |
+| `feature_distribution_sag.png` | Supporting voltage-sag distribution evidence. |
+| `feature_distribution_impedance.png` | Supporting impedance-feature distributions. |
+
+### Deprecated figures retained for traceability
+
+| Figure | Reason not recommended for main presentation |
+| --- | --- |
+| `single_wmu_balanced_accuracy_by_bus.png` | Largely duplicates the single-WMU macro-F1 ranking. |
+| `sensor_count_balanced_accuracy_extended.png` | Duplicates the principal macro-F1 sensor-count conclusion. |
+| `sensor_count_class_recall_extended.png` | Adds limited information under near-perfect class recall. |
+| `grouped_cv_macro_f1_by_sensor_count.png` | Flat 1.0 curve is less informative than the extended comparison. |
+| `classwise_feature_importance_heatmap.png` | Dense and difficult to interpret in the main narrative. |
+| `permutation_importance_top20.png` | Near-zero values reflect feature redundancy and provide little visual ranking. |
+| `bus1_vs_other_bus_feature_comparison.png` | The normalized comparison is less direct than the single-WMU result tables. |
+| `localization_graph_distance_heatmap.png` | Visually dense and less interpretable than the CDF and zone matrix. |
