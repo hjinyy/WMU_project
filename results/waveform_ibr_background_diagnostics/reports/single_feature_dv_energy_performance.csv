@@ -1,0 +1,2 @@
+Feature,Validation,macro_f1,balanced_accuracy,normal_recall,LoadSwitch_recall,fault_precision,SLG_recall,ThreePhase_recall
+Bus01__dV_energy_3ph_max,LOO,0.7666666666666666,0.7666666666666666,1.0,1.0,1.0,0.5333333333333333,0.5333333333333333

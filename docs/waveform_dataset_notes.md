@@ -119,3 +119,10 @@ Integrity reports are stored outside git in the raw output directory:
 - `sanity_check_summary.csv`
 - `dataset_metadata.csv`
 - `dataset_integrity_report.csv/.txt`
+
+An additional diagnostics pass is tracked under
+`results/waveform_ibr_background_diagnostics/`. It reads the existing feature
+tables only; the 84 raw CSV files are neither modified nor regenerated. The
+result should be interpreted with the dataset's narrow design in mind: three
+Normal cases, one SSO condition, one 15% load-switch magnitude, fixed fault
+parameters, no noise, and deterministic simulation conditions.

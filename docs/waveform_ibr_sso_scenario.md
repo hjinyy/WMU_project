@@ -67,3 +67,12 @@ Verified IBR-like SSO settings in the working copy:
 - MATLAB Function constants consistent with `f = 25 Hz`, `t1 = 0.02 s`, `t2 = 0.48 s`, `P0 = 0.1`, `Q0 = 0.05`, `dP = 0.05`, `dQ = 0.025`
 
 The resulting dataset is an **IBR SSO background dataset**, not a baseline dataset: every exported case includes the SSO background and at most one additional event.
+
+## Diagnostics interpretation
+
+The additive analysis in `results/waveform_ibr_background_diagnostics/` reuses
+the exported feature tables without rerunning this model. It focuses on why
+event classification is easy under the fixed SSO/event settings, whether the
+k=1 sensor-count plateau survives location-grouped validation, and whether
+fault localization is more defensible at neighbor or electrical-zone level
+than at exact-bus level.

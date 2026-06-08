@@ -1,0 +1,10 @@
+FileName,Path,Exists,Rows,Columns,Notes
+feature_table_by_bus.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/feature_table_by_bus.csv,True,2520,87,reused; source file left unchanged
+feature_table_by_case.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/feature_table_by_case.csv,True,84,19,reused; source file left unchanged
+feature_table_by_case_wide.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/feature_table_by_case_wide.csv,True,84,2449,reused; source file left unchanged
+dataset_metadata.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_raw_ibr_background/dataset_metadata.csv,True,84,17,reused; source file left unchanged
+dataset_case_index.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/reports/dataset_case_index.csv,True,84,5,reused; source file left unchanged
+classification_full_wmu_metrics.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/reports/classification_full_wmu_metrics.csv,True,2,32,reused; source file left unchanged
+sensor_count_curve.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/reports/sensor_count_curve.csv,True,90,9,reused; source file left unchanged
+fault_localization_preliminary.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/reports/fault_localization_preliminary.csv,True,6,5,reused; source file left unchanged
+fault_localization_debug.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/reports/fault_localization_debug.csv,True,120,13,reused; source file left unchanged

@@ -1,0 +1,11 @@
+Validation,k,SelectedBuses,macro_f1,balanced_accuracy,normal_recall,LoadSwitch_recall,fault_precision,SLG_recall,ThreePhase_recall,Notes
+leave-target-location-out,1,[1],1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,2,"[1, 2]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,3,"[1, 2, 4]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,4,"[1, 2, 4, 5]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,5,"[1, 2, 4, 5, 6]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,6,"[1, 2, 4, 5, 6, 7]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,7,"[1, 2, 4, 5, 6, 7, 8]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,8,"[1, 2, 4, 5, 6, 7, 8, 9]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,9,"[1, 2, 4, 5, 6, 7, 8, 9, 11]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.
+leave-target-location-out,10,"[1, 2, 4, 5, 6, 7, 8, 9, 11, 12]",1.0,1.0,1.0,1.0,1.0,1.0,1.0,Each located event is held out with all events at the same target bus; the 3 Normal cases are each tested once in folds 1-3.

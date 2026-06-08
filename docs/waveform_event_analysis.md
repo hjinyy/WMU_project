@@ -334,3 +334,14 @@ Run command used for the 2026-06-03 IBR-background analysis:
 ```
 
 Compact tracked results are under `results/waveform_ibr_background_analysis/`.
+
+## IBR-background additional diagnostics
+
+`scripts/run_ibr_background_diagnostics.py` provides the interpretation layer
+for the 84-case IBR-background run. The tracked outputs under
+`results/waveform_ibr_background_diagnostics/` explain the perfect
+classification result with feature distributions and importance, test every
+bus as a single WMU, add leave-target-location-out validation, and reinterpret
+strict-LOO localization using 1-hop, 2-hop, graph-distance, and network-zone
+metrics. These results are diagnostics for the fixed deterministic dataset,
+not a general minimum-sensor or exact-localization claim.

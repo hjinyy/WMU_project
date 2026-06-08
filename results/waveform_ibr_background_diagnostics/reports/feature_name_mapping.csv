@@ -1,0 +1,27 @@
+RequestedFeature,MappedColumns,MappingStatus,Aggregation,Notes
+max_dv_energy,dV_energy_3ph_max,mapped,case maximum across observed buses,Closest available extracted feature(s)
+mean_dv_energy,dV_energy_3ph_mean,mapped,case maximum across observed buses,Closest available extracted feature(s)
+max_sag,max_sag,mapped,case maximum across observed buses,Closest available extracted feature(s)
+min_voltage_rms,,not_available,case maximum across observed buses,Not present in existing feature tables; raw waveforms were not reprocessed.
+voltage_rms_drop,max_sag|mean_sag,mapped,case maximum across observed buses,Closest available extracted feature(s)
+max_di_energy,dI_energy_3ph_max,mapped,case maximum across observed buses,Closest available extracted feature(s)
+mean_di_energy,dI_energy_3ph_mean,mapped,case maximum across observed buses,Closest available extracted feature(s)
+max_current_rms,I_rms_post_A|I_rms_post_B|I_rms_post_C,mapped,case maximum across observed buses,Closest available extracted feature(s)
+current_rms_rise,I_rms_jump_3ph_max,mapped,case maximum across observed buses,Closest available extracted feature(s)
+band_energy_20_30Hz,dV_SSO20_30_ratio_A|dV_SSO20_30_ratio_B|dV_SSO20_30_ratio_C,mapped,case maximum across observed buses,Closest available extracted feature(s)
+band_energy_5_55Hz,dV_SSC5_55_ratio_A|dV_SSC5_55_ratio_B|dV_SSC5_55_ratio_C,mapped,case maximum across observed buses,Closest available extracted feature(s)
+res_ratio,dV_Res_ratio_3ph_max,mapped,case maximum across observed buses,Closest available extracted feature(s)
+hf_ratio,dV_HF_ratio_3ph_max,mapped,case maximum across observed buses,Closest available extracted feature(s)
+sso_band_ratio,dV_SSO20_30_ratio_A|dV_SSO20_30_ratio_B|dV_SSO20_30_ratio_C,mapped,case maximum across observed buses,Closest available extracted feature(s)
+dominant_freq,,not_available,case maximum across observed buses,Not present in existing feature tables; raw waveforms were not reprocessed.
+dominant_freq_power,,not_available,case maximum across observed buses,Not present in existing feature tables; raw waveforms were not reprocessed.
+V0_over_V1,V0_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+V2_over_V1,V2_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+I0_over_I1,I0_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+I2_over_I1,I2_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+negative_sequence_ratio,V2_ratio|I2_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+zero_sequence_ratio,V0_ratio|I0_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)
+Z_app_pre,Z_app_pre,mapped,case maximum across observed buses,Closest available extracted feature(s)
+Z_app_event,Z_app_post,mapped,case maximum across observed buses,Closest available extracted feature(s)
+delta_Z_app,Delta_Z_app,mapped,case maximum across observed buses,Closest available extracted feature(s)
+impedance_drop_ratio,Z_drop_ratio,mapped,case maximum across observed buses,Closest available extracted feature(s)

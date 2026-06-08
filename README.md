@@ -172,3 +172,18 @@ Raw xlsx/csv event files and large intermediate tables stay outside git. Compact
 ## IBR-like SSO scenario status
 
 An SPS-only IBR-like SSO inspection/scaffolding pass was added for MATLAB R2025b. The current model inspection confirms that the existing workflow can safely reset all fault/loadswitch events, but a validated **physical** 20–30 Hz SPS injection path has not yet been established without adding incompatible Simscape physical-port blocks. See `docs/waveform_ibr_sso_scenario.md`.
+
+## Additional IBR-background diagnostics
+
+The follow-up interpretation pass is tracked under
+`results/waveform_ibr_background_diagnostics/`. It reuses the existing feature
+tables and adds feature-distribution/separability evidence, full-WMU
+RandomForest importance, stricter single-WMU and leave-target-location-out
+sensor-count checks, and graph-distance/zone fault-localization metrics. It
+does not rerun Simulink or regenerate raw CSV files.
+
+```bash
+.venv/bin/python scripts/run_ibr_background_diagnostics.py \
+  --data-dir /mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background \
+  --source-results-dir /mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background
+```

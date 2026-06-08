@@ -1,0 +1,4 @@
+EventType,exact_accuracy,top3_accuracy,one_hop_accuracy,two_hop_accuracy,mean_graph_distance_error,median_graph_distance_error,zone_accuracy
+Overall,0.0,0.0,0.4666666666666667,0.8,1.8333333333333333,2.0,0.7333333333333333
+SSO_SLG_Fault,0.0,0.0,0.6,0.9,1.5333333333333334,1.0,0.8333333333333334
+SSO_ThreePhase_Fault,0.0,0.0,0.3333333333333333,0.7,2.1333333333333333,2.0,0.6333333333333333
