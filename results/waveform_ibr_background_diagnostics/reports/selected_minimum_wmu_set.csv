@@ -1,0 +1,2 @@
+WMUSet,k,NormalFP,LoadSwitchFP,SLGFN,ThreePhaseFN,TotalFP,TotalFN,FaultRecall,NonFaultSpecificity,LoadSwitchSpecificity,BinaryAccuracy,Feasible,FaultScoreMargin,BestThreshold,NonFaultMaxScore,FaultMinScore,ClassifierType,UsedFeatureSet
+5,1,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,0.17037715340758441,0.10948960603485208,0.024301029331059876,0.1946781827386443,fixed physical threshold rule,max normalized fault severity/sequence/impedance evidence - 0.5 * balanced 67-77Hz LoadSwitch evidence

@@ -1,0 +1,13 @@
+WMUSet,Model,Validation,NormalFP,LoadSwitchFP,SLGFN,ThreePhaseFN,TotalFP,TotalFN,FaultRecall,NonFaultSpecificity,LoadSwitchSpecificity,BinaryAccuracy,HardConstraintFeasible,Notes
+5,LogisticRegression,LeaveOneCaseOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,
+5,LogisticRegression,LeaveTargetLocationOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Location-out groups use TargetBus for fault and LoadSwitch cases; each Normal case is its own group.
+5,LogisticRegression,Stratified3Fold,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Only three Normal cases; fold estimate has high variance.
+5,LinearSVM,LeaveOneCaseOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,
+5,LinearSVM,LeaveTargetLocationOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Location-out groups use TargetBus for fault and LoadSwitch cases; each Normal case is its own group.
+5,LinearSVM,Stratified3Fold,0,0,0,1,0,1,0.9833333333333333,1.0,1.0,0.9880952380952381,False,Only three Normal cases; fold estimate has high variance.
+5,RandomForest,LeaveOneCaseOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,
+5,RandomForest,LeaveTargetLocationOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Location-out groups use TargetBus for fault and LoadSwitch cases; each Normal case is its own group.
+5,RandomForest,Stratified3Fold,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Only three Normal cases; fold estimate has high variance.
+5,GradientBoosting,LeaveOneCaseOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,
+5,GradientBoosting,LeaveTargetLocationOut,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Location-out groups use TargetBus for fault and LoadSwitch cases; each Normal case is its own group.
+5,GradientBoosting,Stratified3Fold,0,0,0,0,0,0,1.0,1.0,1.0,1.0,True,Only three Normal cases; fold estimate has high variance.

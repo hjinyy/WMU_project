@@ -1,0 +1,5 @@
+EventType,BinaryFaultLabel,BinaryClass,HardConstraintRole
+SSO_Normal,0,Non-fault,Normal false positive must be zero
+SSO_LoadSwitch,0,Non-fault,LoadSwitch false positive must be zero
+SSO_SLG_Fault,1,Fault,SLG false negative must be zero
+SSO_ThreePhase_Fault,1,Fault,ThreePhase false negative must be zero

@@ -1,0 +1,24 @@
+FeatureGroup,RequestedFeature,MappedColumns,MappingOrTransform,UsedInFixedFaultScore
+Fault severity,dV_energy,dV_energy_3ph_max,direct,True
+Fault severity,dI_energy,dI_energy_3ph_max,direct,True
+Fault severity,voltage sag,max_sag,direct,True
+Fault severity,V_rms_drop,max_sag,closest available proxy,True
+Fault severity,I_rms_jump,I_rms_jump_3ph_max,absolute value,True
+Fault severity,short-window transient energy,dV_energy_3ph_max|dI_energy_3ph_max,existing event-window cycle-difference RMS energy,True
+Sequence/unbalance,I0_ratio,I0_ratio,direct,True
+Sequence/unbalance,I2_ratio,I2_ratio,direct,True
+Sequence/unbalance,V0_ratio,V0_ratio,direct,True
+Sequence/unbalance,V2_ratio,V2_ratio,direct,True
+Sequence/unbalance,Delta_I_unbalance,Delta_I_unbalance,absolute value,True
+Sequence/unbalance,Delta_V_unbalance,Delta_V_unbalance,absolute value,True
+Impedance,Z_app_pre,Z_app_pre,direct,False
+Impedance,Z_app_event/post,Z_app_post,direct,False
+Impedance,Delta_Z_app,Delta_Z_app,absolute value,True
+Impedance,Z_drop_ratio,Z_drop_ratio,direct,True
+LoadSwitch rejection,dV_E72_ratio,dV_E72_ratio_A|dV_E72_ratio_B|dV_E72_ratio_C,minimum normalized phase ratio; balanced 67-77 Hz evidence,True
+LoadSwitch rejection,60-80 Hz dV ratio,dV_E72_ratio_A|dV_E72_ratio_B|dV_E72_ratio_C,nearest existing band is 67-77 Hz,True
+LoadSwitch rejection,67-77 Hz dV ratio,dV_E72_ratio_A|dV_E72_ratio_B|dV_E72_ratio_C,direct existing band,True
+LoadSwitch rejection,70-80 Hz dV ratio,dV_E72_ratio_A|dV_E72_ratio_B|dV_E72_ratio_C,nearest existing band is 67-77 Hz,True
+LoadSwitch rejection,I_rms_post - I_rms_pre,I_rms_jump_A|I_rms_jump_B|I_rms_jump_C,direct phase differences,False
+LoadSwitch rejection,relative I_rms jump,I_rms_jump_[A-C] / I_rms_pre_[A-C],derived from existing table,True
+LoadSwitch rejection,switching-window energy,dV_energy_3ph_max|dI_energy_3ph_max,existing event-window energy proxy,False
