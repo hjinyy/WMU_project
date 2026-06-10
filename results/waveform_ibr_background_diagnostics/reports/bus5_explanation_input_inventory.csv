@@ -1,0 +1,12 @@
+FileName,Path,Rows,Columns,Bytes,Purpose
+single_wmu_hard_constraint_results.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/single_wmu_hard_constraint_results.csv,30,19,8245,k=1 metrics and feasibility
+fault_score_margin_by_single_wmu.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/fault_score_margin_by_single_wmu.csv,30,6,2670,single-WMU score boundaries
+exhaustive_subset_hard_constraint_results.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/exhaustive_subset_hard_constraint_results.csv,31930,19,8744055,minimum-cardinality evidence
+feasible_minimum_wmu_sets.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/feasible_minimum_wmu_sets.csv,6,19,1728,six feasible k=1 candidates
+selected_minimum_wmu_set.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/selected_minimum_wmu_set.csv,1,19,486,selected Bus 5 rule and margin
+selected_minimum_wmu_case_predictions.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/selected_minimum_wmu_case_predictions.csv,84,10,10596,Bus 5 case predictions
+hard_constraint_feature_mapping.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/hard_constraint_feature_mapping.csv,23,5,1892,physical feature mapping
+hard_constraint_fault_scores_by_case_bus.csv,/home/hy/WMU_project/results/waveform_ibr_background_diagnostics/reports/hard_constraint_fault_scores_by_case_bus.csv,2520,8,251365,per-case/per-bus score components
+feature_table_by_bus.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/feature_table_by_bus.csv,2520,87,4260359,waveform feature distributions
+dataset_metadata.csv,/mnt/c/Users/user/Documents/MATLAB/WMU_final/WMU_batch_data_ibr_background/dataset_metadata.csv,84,17,18916,load-switch targets and load magnitude proxy
+ieee30_edges.csv,/home/hy/WMU_project/data/ieee30_edges.csv,41,2,234,unweighted IEEE-30 topology
